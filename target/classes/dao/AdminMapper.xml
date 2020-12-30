@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.AdminMapper">
+    <resultMap type="pojo.Admin" id="Admin"> </resultMap>
+    <select id = "getAdmin" resultMap="Admin">
+        select * from Admin
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="admin_account != null">
+                and admin_account = '${admin_account}'
+            </if>
+        </trim>
+    </select>
+
+
+</mapper>
+

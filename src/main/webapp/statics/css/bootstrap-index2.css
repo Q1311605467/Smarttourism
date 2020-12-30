@@ -1,0 +1,310 @@
+ body{
+     font-family: 'Microsoft YaHei', sans-serif;
+     
+     
+ }
+ #chakan{
+     font-family: 'Microsoft YaHei', sans-serif;
+     background: #121619;
+     
+ }
+ .navbar-defaults{
+     background-color: #fff;
+     border: none;
+     box-shadow: 0px 2px 8px 0px rgba(50,50,50,0);
+ }
+ .navbar-default .navbar-brand {
+     font-size: 30px;
+     font-weight: bolder;
+     color: #4c9a68;
+     height: 50px;
+     line-height: 35px;
+ }
+ .navbar-default .form-control {
+     display: block;
+     width: 100%;
+     height: 34px;
+     padding: 6px 12px;
+     font-size: 14px;
+     line-height: 35px;
+     color: #555;
+     background-color: #fff;
+     background-image: none;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+     -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+ }
+ .btn-default {
+     color: #333;
+     background-color: #fff;
+     border-color: #ccc;
+     line-height: 35px;
+ }
+ .
+#dengru{
+    background: url("../image/timg.jpg");
+    background-size: cover;
+    height: 700px;
+    width: 100%;
+    text-align: center;
+}
+.user-in-box{
+    background-color: #f1f1f1;
+    padding: 80px 40px;
+    overflow: hidden;
+    border-radius: 8px;
+    
+}
+.user-in-boxs{
+    background-color: #f1f1f1;
+    padding: 10px 40px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+.text{
+    line-height: 20px;
+    padding: 2px 0;
+    font-size: 14px;
+    text-shadow: none;
+    overflow: hidden;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+.huifu{
+	cursor: pointer;
+}
+.deleteComment{
+	cursor: pointer;
+}
+.deleteComments{
+	cursor: pointer;
+}
+.textarea-container {
+    position: relative;
+    margin-left: 5px;
+}
+
+.comment-send {
+    margin: 5px 0;
+}
+
+.textarea-container textarea {
+    font-size: 12px;
+    display: inline-block;
+    box-sizing: border-box;
+    background-color: #f4f5f7;
+    border: 1px solid #e5e9ef;
+    overflow: auto;
+    border-radius: 4px;
+    color: #555;
+    width: 42%;
+    height: 65px;
+    transition: 0s;
+    line-height: normal;
+}
+
+.comment-submit {
+    width: 70px;
+    height: 64px;
+    position: absolute;
+    right: -80px;
+    top: 0;
+    padding: 4px 15px;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 4px;
+    text-align: center;
+    min-width: 60px;
+    vertical-align: top;
+    cursor: pointer;
+    background-color: #00a1d6;
+    border: 1px solid #00a1d6;
+    transition: .1s;
+    user-select: none;
+    outline: none;
+}
+
+.con {
+    position: relative;
+    margin-left: 85px;
+    padding: 22px 0 14px;
+    border-top: 1px solid #e5e9ef;
+}
+
+.user-face {
+    float: left;
+    margin: 7px 0 0 5px;
+    position: relative;
+}
+.user-face .user-head {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.info {
+    color: #99a2aa;
+    line-height: 14px;
+    font-size: 12px;
+}
+.info>span {
+    margin-right: 20px;
+}
+.info .btn-hover {
+    padding: 0 5px;
+    border-radius: 4px;
+    margin-right: 15px;
+    cursor: pointer;
+    display: inline-block;
+}
+span.xyou{
+	margin-right: 20px;
+}
+.user {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 18px;
+    padding-bottom: 4px;
+    display: block;
+    word-wrap: break-word;
+}    
+.user-name{
+	color: #6d757a;
+}
+
+.operation {
+    position: relative;
+    width: 36px;
+    float: right;
+    margin-top: 0;
+    margin-right: 0;
+}
+
+.spot {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    
+}
+.user-heads {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+.ping{
+	display:none;
+}
+.text-no {
+	display:none;
+}
+.text-name{
+	display:none;
+}
+.article-list {
+    margin-top: 1px;
+    margin-bottom: 200px;
+}
+.article-list .article-item-box {
+    position: relative;
+    margin-bottom: 1px;
+    padding: 12px 24px;
+    background-color: #fff;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.article-list .article-item-box h4 {
+    margin-bottom: 6px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #3d3d3d;
+    display: inline-block;
+}
+.article-list .article-item-box h4 a {
+    display: block;
+    padding-left: 36px;
+    word-break: break-all;
+    color: #3d3d3d;
+}
+.article-item-box p.content {
+    font-size: 14px;
+    line-height: 22px;
+    white-space: normal;
+    color: #6b6b6b;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+ .article-list .article-item-box p.content a {
+    font-size: 14px;
+    color: #6b6b6b;
+}
+.info-box {
+    padding-top: 4px;
+    font-size: 14px;
+    color: #6b6b6b;
+    float: left;
+    position: relative;
+}
+.article-list .article-item-box div.opt-box {
+    position: absolute;
+    float:right;
+    right: 24px;
+    bottom: 16px;
+}
+.article-list .article-item-box div.opt-box .btn-opt {
+    border: none;
+    color: #79a5e5;
+    font-size: 14px;
+    background-color: transparent;
+}
+.article-list .article-item-box div.opt-box .btn-opt[data-type="delete"] {
+    color: #ca0c16;
+}
+li.ssss{
+	display:none;
+}
+<!-- 模态框中的属性的隐藏 -->
+#bgs{
+	display:none;
+}
+.blogsid{
+	display:none;
+}
+#cmnss{
+	display:none;
+}
+.reply-item {
+    padding: 10px 0;
+}
+.reply-box.reply-item.reply-face {
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+    vertical-align: top;
+}
+.reply-item .reply-face img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+ .reply-item .reply-con {
+    display: inline-block;
+    width: calc(100% - 34px);
+}
+.reply-box .reply-item .reply-con .user .name {
+    position: relative;
+    top: -1px;
+}
+.user .text-con {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    word-break: break-all;
+}

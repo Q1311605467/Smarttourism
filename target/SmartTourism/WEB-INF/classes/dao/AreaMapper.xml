@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.AreaMapper">
+    <select id="getIDBArea_name" resultType="Integer">
+        select area_id from area where area_name like CONCAT('%',#{area_name},'%') limit 1
+    </select>
+
+    <select id="getAreaBArea_id" resultType="Area">
+        select * from area where area_id = #{area_id}
+    </select>
+
+    <!--****************************************************************-->
+    <!--    后台-->
+    <insert id="htaddArea" parameterType="Area">
+		insert into area(area_name,tourist_route,area_intro,area_picture)
+		values(#{area.area_name},#{area.tourist_route},#{area.area_intro},#{area.area_picture})
+	</insert>
+
+    <select id="htgetArea_idByName" resultType="int">
+		select area_id from area where area_name=#{area_name}
+	</select>
+
+    <select id="htselByName" resultType="int">
+		select count(*) from area where area_name=#{area_name}
+	</select>
+
+    <select id="htgetCount" resultType="java.lang.Integer">
+    select  count(*) from area ;
+    </select>
+
+    <select id="htgetAreaList" parameterType="java.lang.Integer" resultType="pojo.Area">
+    select  * from area  group  by area_id asc  limit #{currentPageNo},#{pageSize};
+  </select>
+
+    <delete id="htdeleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from area
+		where area_id = #{area_id,jdbcType=INTEGER}
+	</delete>
+
+    <select id="htselectByPrimaryKey" resultType="Area">
+		select * from area where area_id=#{area_id}
+	</select>
+
+    <update id="htupdateByPrimaryKeySelective" parameterType="Area">
+		update area set area_name =#{area.area_name},tourist_route =#{area.tourist_route},
+		area_intro =#{area.area_intro},area_picture =#{area.area_picture}
+		 where area_id =#{area.area_id}
+	</update>
+
+    <select id="htgetAreaListByName" parameterType="java.lang.String" resultType="pojo.Area">
+    select  * from area where area_name like concat('%',#{area_name},'%');
+    </select>
+</mapper>

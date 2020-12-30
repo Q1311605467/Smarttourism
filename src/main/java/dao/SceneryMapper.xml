@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.SceneryMapper">
+    <select id="getTop3Scenery" resultType="Scenery">
+        select * from scenery ORDER BY browse_num DESC LIMIT 3;
+    </select>
+
+    <select id="getSceneryBID" resultType="Scenery">
+        select * from scenery where scenery_id = #{scenery_id}
+    </select>
+
+    <update id="addBrowse_num">
+        update scenery set browse_num = browse_num + 1 where scenery_id = #{scenery_id}
+    </update>
+
+    <select id="getSceneryByAreaID" resultType="Scenery">
+        select * from scenery where area_id = #{area_id} order by browse_num desc
+    </select>
+
+    <select id="getSceneryByAreaIDTop3" resultType="Scenery">
+        select * from scenery where area_id = #{area_id} order by browse_num desc limit 3
+    </select>
+
+    <!--***************************后台************************************************************************-->
+    <resultMap id="BaseResultMap" type="pojo.Scenery">
+        <id column="scenery_id" property="scenery_id" jdbcType="INTEGER"/>
+        <result column="scenery_name" property="scenery_name" jdbcType="VARCHAR"/>
+        <result column="scenery_address" property="scenery_address" jdbcType="VARCHAR"/>
+        <result column="scenery_cover" property="scenery_cover" jdbcType="VARCHAR"/>
+        <result column="browse_num" property="browse_num" jdbcType="INTEGER"/>
+        <result column="area_id" property="area_id" jdbcType="INTEGER"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="pojo.Scenery" extends="BaseResultMap">
+        <result column="navigation_route" property="navigation_route" jdbcType="LONGVARCHAR"/>
+        <result column="scenery_picture" property="scenery_picture" jdbcType="LONGVARCHAR"/>
+        <result column="scenery_intro" property="scenery_intro" jdbcType="LONGVARCHAR"/>
+        <result column="comment" property="comment" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    scenery_id, scenery_name, scenery_address, scenery_cover, browse_num, area_id
+  </sql>
+    <sql id="Blob_Column_List">
+    navigation_route, scenery_picture, scenery_intro, comment
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from scenery
+        where scenery_id = #{scenery_id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from scenery
+    where scenery_id = #{scenery_id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="pojo.Scenery">
+    insert into scenery ( scenery_name, scenery_address,
+      scenery_cover, browse_num, area_id,
+      navigation_route, scenery_picture,
+      scenery_intro, comment)
+    values (#{scenery_name,jdbcType=VARCHAR}, #{scenery_address,jdbcType=VARCHAR},
+      #{scenery_cover,jdbcType=VARCHAR}, #{browse_num,jdbcType=INTEGER}, #{area_id,jdbcType=INTEGER},
+      #{navigation_route,jdbcType=LONGVARCHAR}, #{scenery_picture,jdbcType=LONGVARCHAR},
+      #{scenery_intro,jdbcType=LONGVARCHAR}, #{comment,jdbcType=LONGVARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="pojo.Scenery">
+        insert into scenery
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="scenery_id != null">
+                scenery_id,
+            </if>
+            <if test="scenery_name != null">
+                scenery_name,
+            </if>
+            <if test="scenery_address != null">
+                scenery_address,
+            </if>
+            <if test="scenery_cover != null">
+                scenery_cover,
+            </if>
+            <if test="browse_num != null">
+                browse_num,
+            </if>
+            <if test="area_id != null">
+                area_id,
+            </if>
+            <if test="navigation_route != null">
+                navigation_route,
+            </if>
+            <if test="scenery_picture != null">
+                scenery_picture,
+            </if>
+            <if test="scenery_intro != null">
+                scenery_intro,
+            </if>
+            <if test="comment != null">
+                comment,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="scenery_id != null">
+                #{scenery_id,jdbcType=INTEGER},
+            </if>
+            <if test="scenery_name != null">
+                #{scenery_name,jdbcType=VARCHAR},
+            </if>
+            <if test="scenery_address != null">
+                #{scenery_address,jdbcType=VARCHAR},
+            </if>
+            <if test="scenery_cover != null">
+                #{scenery_cover,jdbcType=VARCHAR},
+            </if>
+            <if test="browse_num != null">
+                #{browse_num,jdbcType=INTEGER},
+            </if>
+            <if test="area_id != null">
+                #{area_id,jdbcType=INTEGER},
+            </if>
+            <if test="navigation_route != null">
+                #{navigation_route,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="scenery_picture != null">
+                #{scenery_picture,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="scenery_intro != null">
+                #{scenery_intro,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="comment != null">
+                #{comment,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="pojo.Scenery">
+        update scenery
+        <set>
+            <if test="scenery_name != null">
+                scenery_name = #{scenery_name,jdbcType=VARCHAR},
+            </if>
+            <if test="scenery_address != null">
+                scenery_address = #{scenery_address,jdbcType=VARCHAR},
+            </if>
+            <if test="scenery_cover != null">
+                scenery_cover = #{scenery_cover,jdbcType=VARCHAR},
+            </if>
+            <if test="browse_num != null">
+                browse_num = #{browse_num,jdbcType=INTEGER},
+            </if>
+            <if test="area_id != null">
+                area_id = #{area_id,jdbcType=INTEGER},
+            </if>
+            <if test="navigation_route != null">
+                navigation_route = #{navigation_route,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="scenery_picture != null">
+                scenery_picture = #{scenery_picture,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="scenery_intro != null">
+                scenery_intro = #{scenery_intro,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="comment != null">
+                comment = #{comment,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where scenery_id = #{scenery_id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="pojo.Scenery">
+    update scenery
+    set scenery_name = #{scenery_name,jdbcType=VARCHAR},
+      scenery_address = #{scenery_address,jdbcType=VARCHAR},
+      scenery_cover = #{scenery_cover,jdbcType=VARCHAR},
+      browse_num = #{browse_num,jdbcType=INTEGER},
+      area_id = #{area_id,jdbcType=INTEGER},
+      navigation_route = #{navigation_route,jdbcType=LONGVARCHAR},
+      scenery_picture = #{scenery_picture,jdbcType=LONGVARCHAR},
+      scenery_intro = #{scenery_intro,jdbcType=LONGVARCHAR},
+      comment = #{comment,jdbcType=LONGVARCHAR}
+    where scenery_id = #{scenery_id,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="pojo.Scenery">
+    update scenery
+    set scenery_name = #{scenery_name,jdbcType=VARCHAR},
+      scenery_address = #{scenery_address,jdbcType=VARCHAR},
+      scenery_cover = #{scenery_cover,jdbcType=VARCHAR},
+      browse_num = #{browse_num,jdbcType=INTEGER},
+      area_id = #{area_id,jdbcType=INTEGER}
+    where scenery_id = #{scenery_id,jdbcType=INTEGER}
+  </update>
+
+    <select id="getCount" resultType="java.lang.Integer">
+    select  count(*) from scenery ;
+  </select>
+    <select id="getSceneryList" parameterType="java.lang.Integer" resultType="pojo.Scenery">
+    select  * from Scenery  group  by scenery_id asc  limit #{currentPageNo},#{pageSize};
+  </select>
+    <select id="getSceneryListByName" parameterType="java.lang.String" resultType="pojo.Scenery">
+    select  * from Scenery where scenery_name like concat('%',#{scenery_name},'%');
+  </select>
+
+
+
+    <insert id="htaddScenery" parameterType="Scenery">
+		insert into scenery(scenery_name,scenery_address,navigation_route,scenery_picture,scenery_intro,scenery_cover,browse_num,comment,area_id)
+		values(#{scenery.scenery_name},#{scenery.scenery_address},#{scenery.navigation_route},#{scenery.scenery_picture},
+		#{scenery.scenery_intro},#{scenery.scenery_cover},#{scenery.browse_num},#{scenery.comment},#{scenery.area_id})
+	</insert>
+
+    <select id="htselectByName" resultType="int">
+		select count(*) from scenery where scenery_name=#{scenery_name}
+	</select>
+
+</mapper>
