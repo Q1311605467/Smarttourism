@@ -64,6 +64,8 @@ public interface UserService {
 
     public int updateStrategyBID(Strategy strategy);
 
+
+
     /**********************************************************/
     //后台
     public List<User> getUserList(int currentPageNo, int pageSize);

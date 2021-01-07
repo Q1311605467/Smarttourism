@@ -124,7 +124,7 @@ public class HotelController {
             hotelService.insertHotel(hotel);
         }
         return "redirect:/sys/hotelList";
-    }
+}
 
     @RequestMapping(value="/sys/hotelDetail/{hotel_id}",method=RequestMethod.GET)
     public String modifyHotel(@PathVariable(value="hotel_id") String hotel_id, Model model, HttpServletRequest request) {

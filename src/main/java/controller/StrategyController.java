@@ -4,9 +4,11 @@ import com.alibaba.fastjson.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pojo.CheckTextResult;
 import pojo.Strategy;
 import service.StrategyService;
 import service.UserService;
+import tools.CheckTextAPI;
 import tools.Constants;
 import tools.PageSupport;
 
@@ -150,11 +152,7 @@ public class StrategyController {
         logger.info("pageSize:"+pageSize);
         return "strategyUnPassedList";
     }
-
-
-
-
-
+//    审核推文
     @RequestMapping(value = "/sys/passStrategy",method = RequestMethod.GET)
     @ResponseBody
     public Object passStrategy(Model model, @RequestParam(value = "strategy_id",required = true)String strategy_id) throws Exception{
@@ -190,7 +188,17 @@ public class StrategyController {
     @RequestMapping("/sys/StrategyDetail2/{strategy_id}")
     public String getStrategy(@PathVariable("strategy_id") int strategy_id, Model model) {
         logger.info("stag_id:================================================="+strategy_id);
-        model.addAttribute("Strategy", userService.getStrategyBSid(strategy_id));
+        Strategy strategy = new Strategy();
+        strategy = userService.getStrategyBSid(strategy_id);
+        model.addAttribute("Strategy", strategy);
+
+        CheckTextAPI checkTextAPI = new CheckTextAPI();
+        //审核内容
+        CheckTextResult checkTextResult = checkTextAPI.check(strategy.getContent());
+        logger.info("________________________result="+checkTextResult);
+
+        model.addAttribute("checkTextResult", checkTextResult);
+
         return "StrategyDetail2";
     }
 

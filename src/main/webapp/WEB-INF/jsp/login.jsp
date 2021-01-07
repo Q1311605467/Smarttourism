@@ -11,7 +11,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>系统登录 - 智慧旅游查询系统</title>
+    <title>系统登录 - 旅游查询系统</title>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/BackstageManagement/style.css" />
     <script type="text/javascript">
 
@@ -20,7 +20,7 @@
 <body class="login_bg">
 <section class="loginBox">
     <header class="loginHeader">
-        <h1>智慧旅游查询系统</h1>
+        <h1>旅游查询系统</h1>
     </header>
     <section class="loginCont">
         <form class="loginForm" action="${pageContext.request.contextPath }/dologin.html"  name="actionForm" id="actionForm"  method="post" >

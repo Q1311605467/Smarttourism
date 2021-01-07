@@ -217,7 +217,6 @@ public class UserServiceImpl implements UserService {
         List<User> userList = null;
         userList = userMapper.getUserListByName(user_account);
         return userList;
-
     }
 
     @Override

@@ -4,6 +4,24 @@ public class Admin {
 	private int admin_id;
 	private String admin_account;
 	private String admin_password;
+	private  int admin_supreme;
+	private  int admin_isActive;
+
+	public int getAdmin_supreme() {
+		return admin_supreme;
+	}
+
+	public int getAdmin_isActive() {
+		return admin_isActive;
+	}
+
+	public void setAdmin_isActive(int admin_isActive) {
+		this.admin_isActive = admin_isActive;
+	}
+
+	public void setAdmin_supreme(int admin_supreme) {
+		this.admin_supreme = admin_supreme;
+	}
 
 	public int getAdmin_id() {
 		return admin_id;

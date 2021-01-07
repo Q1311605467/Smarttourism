@@ -68,7 +68,7 @@
         <div class="col-md-2">
             <div class="list-group">
                 <a href="userList.html" class="list-group-item active">用户管理</a>
-                <a href="userSearch.html" class="list-group-item">用户搜索</a>
+                <a href="adminList.html" class="list-group-item">管理员管理</a>
 <%--                <a href="" role="button"  class="list-group-item" data-toggle="modal" data-target="#myModal">添加用户</a>--%>
             </div>
         </div>
@@ -216,7 +216,7 @@
         <div class="row">
             <div class="col-md-12">
                 <center>
-                    <p >
+                    <p>
                         Copyright&nbsp;©&nbspFuJian University of Technology&nbsp;&nbsp;www.fjut.edu.cn&nbsp;&nbsp;闽ICP备10022194号-1
                     </p>
                 </center>

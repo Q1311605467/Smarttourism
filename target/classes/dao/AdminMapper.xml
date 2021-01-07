@@ -13,6 +13,36 @@
         </trim>
     </select>
 
+    <select id="getCount" resultType="java.lang.Integer">
+    select  count(*) from Admin
+    </select>
 
+    <select id="getAdminList" parameterType="java.lang.Integer" resultType="pojo.Admin">
+    select  * from admin  group  by admin_id asc  limit #{currentPageNo},#{pageSize};
+    </select>
+
+    <insert id="insertAdmin" parameterType="Admin">
+		insert into Admin(admin_account,admin_password,admin_isActive,admin_supreme)
+		values(#{admin_account},#{admin_password},#{admin_isActive},#{admin_supreme});
+	</insert>
+
+<!--    查询管理员-->
+    <select id="getAdminListByName" parameterType="java.lang.String" resultType="pojo.Admin">
+    select  * from admin where admin_account like concat('%',#{admin_account},'%');
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="Admin">
+        select
+        *
+        from admin
+        where admin_id = #{user_id,jdbcType=INTEGER}
+    </select>
+
+    <update id="updateByPrimaryKey" parameterType="pojo.Admin">
+        update admin
+        set
+        admin_isActive = #{admin_isActive,jdbcType=INTEGER}
+        where admin_id = #{admin_id,jdbcType=INTEGER}
+    </update>
 </mapper>
 

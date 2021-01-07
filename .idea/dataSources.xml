@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="smarttourism@localhost" uuid="981cc328-f994-4953-838d-1e4a44f5d41a">
+    <data-source source="LOCAL" name="smarttourism@localhost" uuid="6e76b842-29d8-484a-acb7-17b41e6ceea8">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/smarttourism</jdbc-url>
+      <driver-properties>
+        <property name="serverTimezone" value="Hongkong" />
+      </driver-properties>
     </data-source>
   </component>
 </project>

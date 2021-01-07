@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -100,21 +101,258 @@
             </div>
 
             <div align="center">
-                <a  class="pass" id="passStrategy" onclick="passStrategy(${Strategy.strategy_id})">
-                    <button type="button" class="btn1 btn btn-default">
-                        审核通过
-                    </button>
-                </a>
-                <a class="pass" id="unPassStrategy" onclick="unPassStrategy(${Strategy.strategy_id})">
-                    <button type="button" class="btn2 btn btn-default">
-                        审核不通过
-                    </button>
-                </a>
+                    <a  class="pass" id="">
+                        <button type="button" class="btn1 btn btn-default" data-toggle="modal" data-target="#myModal1">
+                            审核分析
+                        </button>
+                    </a>
             </div>
 
         </div>
     </div>
 </div>
+<%--Model--%>
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <sbutton type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></sbutton>
+                <h4 class="modal-title" id="#">
+                    <fieldset>
+                        <c:if test="${checkTextResult.conclusionType==1}">
+                            <h4 style="color: #4cae4c;font-weight: bold" >
+                                <img  src="${pageContext.request.contextPath }/statics/images/ok.jpg" alt=""> 审核通过
+                            </h4>
+                        </c:if>
+                        <c:if test="${checkTextResult.conclusionType==2}">
+                            <h4 style="color: #e90205;font-weight: bold">
+                                <img  src="${pageContext.request.contextPath }/statics/images/no.jpg" alt=""> 审核不通过
+                            </h4>
+                        </c:if>
+                    </fieldset>
+
+                </h4>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th width="30%">审核维度</th>
+                        <th width="20%">状态</th>
+                        <th width="20%">置信度</th>
+                        <th width="30%">违禁词</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:if test="${checkTextResult.conclusionType==1}">
+                        <tr>
+                            <td>官方默认违禁词</td>
+                            <td style="color: green">通过</td>
+                            <td>0.0</td>
+                            <td>无</td>
+                        </tr>
+                        <tr>
+                            <td>暴恐违禁</td>
+                            <td style="color: green">通过</td>
+                            <td>0.0</td>
+                            <td>无</td>
+                        </tr>
+                        <tr>
+                            <td>文本色情</td>
+                            <td style="color: green">通过</td>
+                            <td>0.0</td>
+                            <td>无</td>
+                        </tr>
+                        <tr>
+                            <td>政治敏感</td>
+                            <td style="color: green">通过</td>
+                            <td>0.0</td>
+                            <td>无</td>
+                        </tr>
+                        <tr>
+                            <td>恶意推广</td>
+                            <td style="color: green">通过</td>
+                            <td>0.0</td>
+                            <td>无</td>
+                        </tr>
+                        <tr>
+                            <td>低俗辱骂</td>
+                            <td style="color: green">通过</td>
+                            <td>0.0</td>
+                            <td>无</td>
+                        </tr>
+                        <tr>
+                            <td>恶意推广-联系方式</td>
+                            <td style="color: green">通过</td>
+                            <td>0.0</td>
+                            <td>无</td>
+                        </tr>
+                        <tr>
+                            <td>恶意推广-软文推广</td>
+                            <td style="color: green">通过</td>
+                            <td>0.0</td>
+                            <td>无</td>
+                        </tr>
+                        <tr>
+                            <td>广告法审核</td>
+                            <td style="color: green">通过</td>
+                            <td>0.0</td>
+                            <td>无</td>
+                        </tr>
+                    </c:if>
+
+                    <c:if test="${checkTextResult.conclusionType!=1}">
+                        <c:forEach items="${checkTextResult.data}" var="data">
+                            <tr>
+                                <c:if test="${data.type==11&&data.subType==0}">
+                                    <td>官方默认违禁词</td>
+                                    <td style="color: red">不通过</td>
+                                    <td>1.0</td>
+                                    <td>
+                                        <c:forEach items="${data.hits}" var="hits">
+                                            <c:forEach items="${hits.words}" var="words">
+                                                ${words.toString()}
+                                            </c:forEach>
+                                        </c:forEach>
+                                    </td>
+                                </c:if>
+                            </tr>
+
+
+                            <tr>
+                                <c:if test="${data.type==12&&data.subType==0}">
+                                    <td>低质灌水</td>
+                                    <td style="color: red">不通过</td>
+                                    <td>${data.hits.get(0).probability}</td>
+                                    <td>
+                                        <c:forEach items="${data.hits.get(0).words}" var="words">
+                                            ${words.toString()}
+                                        </c:forEach>
+                                    </td>
+                                </c:if>
+                            </tr>
+                            <tr>
+                                <c:if test="${data.type==12&&data.subType==1}">
+                                    <td>暴恐违禁</td>
+                                    <td style="color: red">不通过</td>
+                                    <td>${data.hits.get(0).probability}</td>
+                                    <td>
+                                        <c:forEach items="${data.hits.get(0).words}" var="words">
+                                            ${words.toString()}
+                                        </c:forEach>
+                                    </td>
+                                </c:if>
+                            </tr>
+                            <tr>
+                                <c:if test="${data.type==12&&data.subType==2}">
+                                    <td>文本色情</td>
+                                    <td style="color: red">不通过</td>
+                                    <td>${data.hits.get(0).probability}</td>
+                                    <td>
+                                        <c:forEach items="${data.hits}" var="hits">
+                                            <c:forEach items="${hits.words}" var="words">
+                                                ${words.toString()}
+                                            </c:forEach>
+                                        </c:forEach>
+                                    </td>
+                                </c:if>
+                            </tr>
+                            <tr>
+                                <c:if test="${data.type==12&&data.subType==3}">
+                                    <td>政治敏感</td>
+                                    <td style="color: red">不通过</td>
+                                    <td>${data.hits.get(0).probability}</td>
+                                    <td>
+                                        <c:forEach items="${data.hits}" var="hits">
+                                            <c:forEach items="${hits.words}" var="words">
+                                                ${words.toString()}
+                                            </c:forEach>
+                                        </c:forEach>
+                                    </td>
+                                </c:if>
+                            </tr>
+                            <tr>
+                                <c:if test="${data.type==12&&data.subType==5}">
+                                    <td>低俗辱骂</td>
+                                    <td style="color: red">不通过</td>
+                                    <td>${data.hits.get(0).probability}</td>
+                                    <td>
+                                        <c:forEach items="${data.hits}" var="hits">
+                                            <c:forEach items="${hits.words}" var="words">
+                                                ${words.toString()}
+                                            </c:forEach>
+                                        </c:forEach>
+                                    </td>
+                                </c:if>
+                            </tr>
+                            <tr>
+                                <c:if test="${data.type==12&&data.subType==6}">
+                                    <td>恶意推广-联系方式</td>
+                                    <td style="color: red">不通过</td>
+                                    <td>${data.hits.get(0).probability}</td>
+                                    <td>
+                                        <c:forEach items="${data.hits}" var="hits">
+                                            <c:forEach items="${hits.words}" var="words">
+                                                ${words.toString()}
+                                            </c:forEach>
+                                        </c:forEach>
+                                    </td>
+                                </c:if>
+                            </tr>
+                            <tr>
+                                <c:if test="${data.type==12&&data.subType==7}">
+                                    <td>恶意推广-软文推广</td>
+                                    <td style="color: red">不通过</td>
+                                    <td>${data.hits.get(0).probability}</td>
+                                    <td>
+                                        <c:forEach items="${data.hits}" var="hits">
+                                            <c:forEach items="${hits.words}" var="words">
+                                                ${words.toString()}
+                                            </c:forEach>
+                                        </c:forEach>
+                                    </td>
+                                </c:if>
+                            </tr>
+                            <tr>
+                                <c:if test="${data.type==12&&data.subType==8}">
+                                    <td>广告法审核</td>
+                                    <td style="color: red">不通过</td>
+                                    <td>${data.hits.get(0).probability}</td>
+                                    <td>
+                                        <c:forEach items="${data.hits}" var="hits">
+                                            <c:forEach items="${hits.words}" var="words">
+                                                ${words.toString()}
+                                            </c:forEach>
+                                        </c:forEach>
+                                    </td>
+                                </c:if>
+                            </tr>
+
+                        </c:forEach>
+                    </c:if>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <div align="center">
+                    <a  class="pass" id="passStrategy" onclick="passStrategy(${Strategy.strategy_id})">
+                        <button type="button" class="btn1 btn btn-default">
+                            审核通过
+                        </button>
+                    </a>
+                    <a class="pass" id="unPassStrategy" onclick="unPassStrategy(${Strategy.strategy_id})">
+                        <button type="button" class="btn2 btn btn-default">
+                            审核不通过
+                        </button>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<%--ModelEnd--%>
+
 
 <div style="height: 20px"></div>
 

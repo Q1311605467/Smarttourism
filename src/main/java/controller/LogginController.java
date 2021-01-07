@@ -22,25 +22,20 @@ public class LogginController {
     private AdminService adminService;
     @RequestMapping(value="/login.html")
     public String login() {
-        logger.debug("Maser welcome Business==================");
         return "login";
     }
     @RequestMapping(value="/dologin.html",method= RequestMethod.POST)
-    public String doLogin(@RequestParam String admin_account,
-                          @RequestParam String admin_password,
-                          HttpServletRequest request,
-                          HttpSession session) throws Exception{
-        logger.debug("doLogin====================================");
+    public String doLogin(@RequestParam String admin_account, @RequestParam String admin_password, HttpServletRequest request, HttpSession session) throws Exception{
+
         //调用service方法，进行用户匹配
         Admin Admin = adminService.login(admin_account,admin_password);
-        if(null != Admin){//登录成功
+        if(null != Admin && Admin.getAdmin_isActive()==1){//登录成功
             //放入session
             session.setAttribute(Constants.ADMIN_SESSION, Admin);
             //页面跳转（frame.jsp）
             return "redirect:/sys/main.html";
             //response.sendRedirect("jsp/frame.jsp");
         }else{
-
             //页面跳转（userLogin.jsp）带出提示信息--转发
             request.setAttribute("error", "用户名或密码不正确");
             return "login";
