@@ -133,7 +133,7 @@
 
                 </h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-bofont-weight: bolddy">
                 <table class="table">
                     <thead>
                     <tr>
