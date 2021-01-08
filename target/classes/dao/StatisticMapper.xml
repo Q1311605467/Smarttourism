@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.StatisticMapper">
+    <resultMap id="CSNMap" type="java.util.Map">
+        <result property="name" column="recommend"  jdbcType="VARCHAR"></result>
+        <result property="num" column="clickNum"  jdbcType="INTEGER"></result>
+    </resultMap>
+    <resultMap id="SEMap" type="java.util.Map">
+        <result property="name" column="scenery_name"  jdbcType="VARCHAR"></result>
+        <result property="num" column="browse_num"  jdbcType="INTEGER"></result>
+    </resultMap>
+    <select id="countAreaNum" resultMap="CSNMap">
+       select recommend, clickNum
+        from
+        strategy
+        group by recommend order by clickNum desc
+    </select>
+    <select id="countSceneryNum" resultMap="SEMap">
+        select scenery_name, browse_num
+        from
+        scenery
+        order by browse_num desc;
+    </select>
+</mapper>
+
+<!--countSceneryNum-->
