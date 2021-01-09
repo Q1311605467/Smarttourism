@@ -24,6 +24,12 @@ public class UserServiceImpl implements UserService {
     @Resource
     private RestMapper restMapper;
 
+    @Resource
+    private Hotel_reservationMapper hotel_reservationMapper;
+
+    @Resource
+    private Scenery_reservationMapper scenery_reservationMapper;
+
     @Override
     public User login(String user_account, String user_password) {
         // TODO Auto-generated method stub
@@ -73,6 +79,17 @@ public class UserServiceImpl implements UserService {
         return k;
     }
 
+    @Override
+    public int AddHR(Hotel_reservation reserve) {
+        int k = hotel_reservationMapper.AddHR(reserve);
+        return k;
+    }
+
+    @Override
+    public int AddSR(Scenery_Reservation reserve) {
+        int k = scenery_reservationMapper.AddSR(reserve);
+        return k;
+    }
     @Override
     public int addStrategy(Strategy strategy) {
         int k = strategyMapper.addStrategy(strategy);

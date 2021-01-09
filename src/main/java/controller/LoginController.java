@@ -173,6 +173,35 @@ public class LoginController {
         }
         return null;
     }
+    @RequestMapping("/reserves.html")
+    public String reserves(@RequestParam(value = "s", defaultValue = "丽江") String s, @RequestParam("sort") int sort, Model model) {
+        model.addAttribute("s", s);
+//        model.addAttribute("weather",JSONObject.parseObject(WeatherUtils.GetWeatherData(s)));
+        if (sort == 1) {
+            model.addAttribute("Strategys", userService.getStrategyBDiDianTop5(s));
+            int area_id = userService.getIDBArea_name(s);
+            if (area_id > 0) {
+                model.addAttribute("Area", userService.getAreaBArea_id(area_id));
+                model.addAttribute("Scenerys", userService.getSceneryByAreaIDTop3(area_id));
+                model.addAttribute("Hotels", userService.getHotelAreaTop3(area_id));
+                model.addAttribute("Rests", userService.getRestAreaTop3(area_id));
+            }
+            return "queryArea";
+        } else if (sort == 2) {
+            int area_id = userService.getIDBArea_name(s);
+            if (area_id > 0) {
+                model.addAttribute("Scenerys", userService.getSceneryByAreaID(area_id));
+            }
+            return "reserveScenery";
+        } else if (sort == 3) {
+            if (s.equals("*"))
+                model.addAttribute("Strategys", userService.queryAllStrategy());
+            else
+                model.addAttribute("Strategys", userService.getStrategyBDiDian(s));
+            return "queryStrategy";
+        }
+        return null;
+    }
 
     @RequestMapping("/Hotel.html")
     public String allHotel(@RequestParam(value = "s", defaultValue = "*") String s, Model model) {

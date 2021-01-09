@@ -14,84 +14,136 @@
             href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
             rel="stylesheet">
 
-    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
-    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
-    <!--[if lt IE 9]>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- bootstrap-css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/bootstrap.css" type="text/css" media="all" />
+    <!--// bootstrap-css -->
+    <!-- css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/style.css" type="text/css" media="all" />
+    <!--// css -->
+    <!-- font-awesome icons -->
+    <link href="${pageContext.request.contextPath }/statics/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!-- font -->
+    <link href='#css?family=Francois+One' rel='stylesheet' type='text/css'>
+    <!-- //font -->
+    <script src="${pageContext.request.contextPath }/statics/js/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath }/statics/js/bootstrap.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/move-top.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
+    </script>
+    <!--animate-->
+    <link href="${pageContext.request.contextPath }/statics/css/animate.css" rel="stylesheet" type="text/css" media="all">
+    <script src="${pageContext.request.contextPath }/statics/js/wow.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
+    <script>
+        new WOW().init();
+    </script>
 </head>
 
 <body style="">
-<input type="hidden" id="path" value="${pageContext.request.contextPath }">
-
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header" style="margin-left: 10%">
-            <a class="navbar-brand" style="font-family: 楷体; font-size: 40px;"
-               href="${pageContext.request.contextPath }/index.html">智旅网</a>
-            <button type="button" class="navbar-toggle collapsed"
-                    data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-                    aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav"
-                style="margin-left: 15%">
-                <li role="presentation" class="active"><a href="${pageContext.request.contextPath }/index.html"
-                                                          style="color: white; background-color: #ff9d00;">首页</a></li>
-                <li role="presentation"><a
-                        href="${pageContext.request.contextPath }/query.html?sort=2&s="
-                        style="color: black">景点</a></li>
-                <li role="presentation"><a
-                        href="${pageContext.request.contextPath }/Hotel.html?s="
-                        style="color: black;">酒店</a></li>
-
-                <li role="presentation"><a
-                        href="${pageContext.request.contextPath }/Strategy.html?s="
-                        style="color: black;">攻略</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right" style="margin-right: 10%">
-                <li id="denglu"><a style="color: cornflowerblue"
-                                   href="${pageContext.request.contextPath }/QDlogin.html">登录</a></li>
-                <li id="zhuce"><a style="color: cornflowerblue"
-                                  href="${pageContext.request.contextPath }/reg.html">注册</a></li>
-            </ul>
+<!-- 导航栏 -->
+<div class="header">
+    <div class="top-header">
+        <div class="container">
+            <div class="top-header-info">
+                <div class="top-header-left wow fadeInLeft animated" data-wow-delay=".5s">
+                    <p>Your thoughtful little travel helper</p>
+                </div>
+                <div class="top-header-right wow fadeInRight animated" data-wow-delay=".5s">
+                    <div class="top-header-right-info">
+                        <ul class="nav navbar-nav">
+                            <li id="denglu"><a href="${pageContext.request.contextPath }/QDlogin.html">登录</a></li>
+                            <li id="zhuce"><a href="${pageContext.request.contextPath }/reg.html">注册</a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
         </div>
     </div>
-</nav>
-
-
-<div style="margin-left: 40%; margin-right: 40%; margin-top: 10%" id="myModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title" id="myModalLabel">注册用户</h4>
+    <div class="bottom-header">
+        <div class="container">
+            <div class="logo wow fadeInDown animated" data-wow-delay=".5s">
+                <h1><a href="${pageContext.request.contextPath }/index.html"><img src="${pageContext.request.contextPath }/statics/images/newimge/logo.jpg" alt="" /></a></h1>
+            </div>
+            <div class="top-nav wow fadeInRight animated" data-wow-delay=".5s">
+                <nav class="navbar navbar-default">
+                    <div class="container">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Menu
+                        </button>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="${pageContext.request.contextPath }/index.html" class="active">首页</a></li>
+                            <li><a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">景区<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="hvr-bounce-to-bottom" href="${pageContext.request.contextPath }/query.html?sort=2&s=">景区介绍</a></li>
+                                    <li><a class="hvr-bounce-to-bottom" href="${pageContext.request.contextPath }/reserves.html?sort=2&s=">门票预订</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="${pageContext.request.contextPath }/Hotel.html?s=">酒店</a></li>
+                            <li><a href="${pageContext.request.contextPath }/Strategy.html?s=">推文</a></li>
+                            <li><a href="${pageContext.request.contextPath }/query.html?sort=1">地区</a></li>
+                        </ul>
+                        <div class="clearfix"> </div>
+                    </div>
+                </nav>
+            </div>
         </div>
+    </div>
+</div>
+<input type="hidden" id="user_ID" value="${userSession.user_id }">
+<input type="hidden" id="path" value="${pageContext.request.contextPath }">
+<script>
+    var user_account = "${userSession.user_account}";
+    var user_password = "${userSession.user_password}";
+    // 		var path = "${pageContext.request.contextPath}";
+    if (!user_account) {
+        document.getElementById("user").style.display = "none";
+        document.getElementById("logout").style.display = "none";
+    } else {
+        document.getElementById("denglu").style.display = "none";
+        document.getElementById("zhuce").style.display = "none";
+    }
+</script>
+<div class="login">
+    <div class="container">
+        <div class="login-body">
+            <div class="login-heading">
+                <h1>注册</h1>
+            </div>
 
-        <div class="modal-body">
-            <form>
+            <div class="login-info">
+                <form>
                 <div class="form-group">
                     <label for="user_account">用户账号</label>
                     <p id="p1"></p>
                     <input type="text" id="user_account" required="required"
-                           name="user_account" class="form-control" placeholder="请输入用户账号">
+                           name="user_account" class="input-text" placeholder="请输入用户账号">
                 </div>
                 <div class="form-group">
                     <label for="user_password1">用户密码</label>
                     <p style="color: red">${error}</p>
                     <p id="p2"></p>
                     <input type="password" name="user_password1" id="user_password1" required="required"
-                           class="form-control" placeholder="请输入密码">
+                           placeholder="请输入密码">
                 </div>
                 <div class="form-group">
                     <label for="user_password2">确认用户密码</label>
-                    <input type="password" name="user_password2" id="user_password2" class="form-control" required="required"
+                    <p id="p3"></p>
+                    <p id="p4"></p>
+                    <input type="password" name="user_password2" id="user_password2" required="required"
                            placeholder="请确认密码">
                 </div>
                 <label>性别</label>
@@ -117,17 +169,11 @@
 
                 </div>
             </form>
-        </div>
+            </div>
+         </div>
     </div>
 </div>
 
-
-<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-<script
-        src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
-<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 
 <script type="text/javascript"
         src="${pageContext.request.contextPath }/statics/js/user_reg.js"></script>

@@ -1,14 +1,16 @@
 package pojo;
 
+import java.util.Date;
+
 public class Scenery_Reservation {
     private int scen_reserv_id;
     private int scenery_id;
     private int area_id;
     private int user_id;
     private String scenery_name;
-    private String date;
+    private Date Sdate;
     private int reserv_num;
-    private int tel;
+    private String tel;
     private int is_cancel;
     private float total_cost_s;
 
@@ -52,12 +54,12 @@ public class Scenery_Reservation {
         this.scenery_name = scenery_name;
     }
 
-    public String getDate() {
-        return date;
+    public Date getDate() {
+        return Sdate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDate(Date date) {
+        this.Sdate = date;
     }
 
     public int getReserv_num() {
@@ -68,11 +70,11 @@ public class Scenery_Reservation {
         this.reserv_num = reserv_num;
     }
 
-    public int getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 

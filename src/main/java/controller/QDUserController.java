@@ -11,16 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import pojo.Strategy;
-import pojo.User;
-import service.UserService;
+import pojo.*;
+import service.*;
 import tools.Constants;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 @RequestMapping("/sys/user")
@@ -29,11 +30,26 @@ public class QDUserController extends BaseController {
 
     @Resource
     private UserService userService;
+    @Resource
+    private HotelService hotelService;
 
+    @Resource
+    private Hotel_reservationService hotel_reservationService;
+    @Resource
+    private SceneryService sceneryService;
+    @Resource
+    private Scenery_reservationService scenery_reservationService;
+    @Resource
+    private Hotel_roomService hotel_roomService;
 
     @RequestMapping("/modify.html")
     public String modify() {
         return "modify";
+    }
+
+    @RequestMapping("/userDetail.html")
+    public String userDetail() {
+        return "userDetail";
     }
 
     @RequestMapping("/userModify.html")
@@ -104,7 +120,10 @@ public class QDUserController extends BaseController {
     }
 
     @RequestMapping("/addStrategy.html")
-    public String addStrategy(@RequestParam int user_id, @RequestParam String title, @RequestParam String recommend, @RequestParam(value = "strategy_cover") MultipartFile filename, @RequestParam String content, HttpServletRequest request) {
+    public String addStrategy(@RequestParam int user_id, @RequestParam String title,
+                              @RequestParam String recommend, @RequestParam(value = "strategy_cover") MultipartFile filename,
+                              @RequestParam String content, HttpServletRequest request
+            ) {
         Strategy strategy = new Strategy();
         String idPath = null;
         if (!filename.isEmpty()) {
@@ -149,6 +168,86 @@ public class QDUserController extends BaseController {
             userService.addStrategy(strategy);
         }
         return "redirect:/sys/user/userStrategy/" + user_id;
+    }
+
+    @RequestMapping(value = "/userAddHR.html")
+    public String userAddHR(@RequestParam int hotel_id, HttpServletRequest request, Model model,
+                            HttpSession session) {
+        Hotel hotel=hotelService.hotelDetail(hotel_id);
+        if(hotel!=null){
+            session.setAttribute(Constants.HOTEL_SESSION, hotel);
+            model.addAttribute("room", hotel_roomService.getHotelRoomList(hotel_id));
+        }
+        return "userAddHR";
+    }
+
+    @RequestMapping("/addHR.html")
+    public String addHR(@RequestParam int hotel_id, @RequestParam int area_id, @RequestParam int user_id, @RequestParam String hotel_name, @RequestParam Date in_time,@RequestParam Date out_time,@RequestParam int reserv_num,@RequestParam String tel,@RequestParam String room_type,@RequestParam int total_cost){
+
+        Hotel_reservation hotel_reservation=new Hotel_reservation();
+        hotel_reservation.setHotel_id(hotel_id);
+        hotel_reservation.setArea_id(area_id);
+        hotel_reservation.setUser_id(user_id);
+        hotel_reservation.setHotel_name(hotel_name);
+
+        hotel_reservation.setIn_time(in_time);
+        hotel_reservation.setOut_time(out_time);
+        hotel_reservation.setRoom_type(room_type);
+        hotel_reservation.setIs_breakfast(0);
+        hotel_reservation.setReserv_num(reserv_num);
+        hotel_reservation.setTotal_cost(total_cost);
+        hotel_reservation.setTel(tel);
+        userService.AddHR(hotel_reservation);
+        return "redirect:/sys/user/HRMylist/" + user_id;
+    }
+
+    @RequestMapping(value = "/userAddSR.html")
+    public String userAddSR(@RequestParam int scenery_id, HttpServletRequest request,
+                            HttpSession session) {
+        Scenery scenery=sceneryService.sceneryDetail(scenery_id);
+        if(scenery!=null){
+            session.setAttribute(Constants.SCENERY_SESSION, scenery);
+        }
+        return "userAddSR";
+    }
+
+    @RequestMapping("/addSR.html")
+    public String addSR(@RequestParam int scenery_id, @RequestParam int user_id, @RequestParam String scenery_name, @RequestParam Date Sdate, @RequestParam int reserv_num, @RequestParam String tel,@RequestParam int total_cost_s){
+
+        Scenery_Reservation scenery_reservation=new Scenery_Reservation();
+        scenery_reservation.setScenery_id(scenery_id);
+        scenery_reservation.setUser_id(user_id);
+        scenery_reservation.setScenery_name(scenery_name);
+        scenery_reservation.setDate(Sdate);
+        scenery_reservation.setReserv_num(reserv_num);
+        scenery_reservation.setTel(tel);
+        scenery_reservation.setTotal_cost_s(total_cost_s);
+        userService.AddSR(scenery_reservation);
+        return "redirect:/sys/user/SRMylist/" + user_id;
+    }
+
+    @RequestMapping(value = "/usercancelHR.html")
+    public String cancelHR(@RequestParam int reserv_id,@RequestParam int user_id){
+        hotel_reservationService.cancelReserve(reserv_id);
+        return "redirect:/sys/user/HRMylist/" + user_id;
+    }
+
+    @RequestMapping(value = "/usercancelSR.html")
+    public String cancelSR(@RequestParam int scen_reserv_id,@RequestParam int user_id){
+        scenery_reservationService.cancelReserve(scen_reserv_id);
+        return "redirect:/sys/user/SRMylist/" + user_id;
+    }
+
+    @RequestMapping("/HRMylist/{user_id}")
+    public String HR_Mylist(@PathVariable("user_id") int user_id, Model model) {
+        model.addAttribute("HRMyList",hotel_reservationService.getMyHotle_Reserve(user_id));
+        return "HRMyList";
+    }
+
+    @RequestMapping("/SRMylist/{user_id}")
+    public String SR_Mylist(@PathVariable("user_id") int user_id, Model model) {
+        model.addAttribute("SRMyList",scenery_reservationService.getMySceneryReserve(user_id));
+        return "SRMyList";
     }
 
     @RequestMapping("/userStrategy/{user_id}")

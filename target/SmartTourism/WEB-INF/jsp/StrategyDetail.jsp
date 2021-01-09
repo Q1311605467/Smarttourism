@@ -20,118 +20,136 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/bootstrap-index2.css">
 
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- bootstrap-css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/bootstrap.css" type="text/css" media="all" />
+    <!--// bootstrap-css -->
+    <!-- css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/style.css" type="text/css" media="all" />
+    <!--// css -->
+    <!-- font-awesome icons -->
+    <link href="${pageContext.request.contextPath }/statics/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!-- font -->
+    <link href='#css?family=Francois+One' rel='stylesheet' type='text/css'>
+    <!-- //font -->
+    <script src="${pageContext.request.contextPath }/statics/js/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath }/statics/js/bootstrap.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/move-top.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
+    </script>
+    <!--animate-->
+    <link href="${pageContext.request.contextPath }/statics/css/animate.css" rel="stylesheet" type="text/css" media="all">
+    <script src="${pageContext.request.contextPath }/statics/js/wow.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <!--//end-animate-->
 </head>
 
-
 <body style="">
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header" style="margin-left: 10%">
-            <a class="navbar-brand" style="font-family: 楷体; font-size: 40px;"
-               href="${pageContext.request.contextPath }/index.html">智旅网</a>
-            <button type="button" class="navbar-toggle collapsed"
-                    data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-                    aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav"
-                style="margin-left: 15%">
-                <li role="presentation"><a href="${pageContext.request.contextPath }/index.html"
-                                           style="color: black;">首页</a></li>
-                <li role="presentation"><a
-                        href="${pageContext.request.contextPath }/query.html?sort=2&s="
-                        style="color: black">景点</a></li>
-
-                <li role="presentation"><a
-                        href="${pageContext.request.contextPath }/Hotel.html?s="
-                        style="color: black;">酒店</a></li>
-
-                <li role="presentation"><a
-                        href="${pageContext.request.contextPath }/Strategy.html?s="
-                        style="color: white; background-color: #ff9d00;">攻略</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right" style="margin-right: 10%">
-                <li class="dropdown" id="user">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false"><img style="height: 25px; width: 25px; border-radius: 50%;"
-                                                  src="${pageContext.request.contextPath }/statics/images/${userSession.head}">
-                        欢迎您，${userSession.user_account}<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="${pageContext.request.contextPath }/sys/user/modify.html">修改个人信息</a></li>
-                        <li><a href="${pageContext.request.contextPath }/sys/user/writeStrategy.html">书写攻略</a></li>
-                        <li><a href="${pageContext.request.contextPath }/sys/user/userStrategy/${userSession.user_id }">我的攻略</a>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="${pageContext.request.contextPath }/logout.html">退出登录</a></li>
-                    </ul>
-                </li>
-                <li id="denglu"><a style="color: cornflowerblue"
-                                   href="${pageContext.request.contextPath }/QDlogin.html">登录</a></li>
-                <li id="zhuce"><a style="color: cornflowerblue"
-                                  href="${pageContext.request.contextPath }/reg.html">注册</a></li>
-            </ul>
+<!-- 导航栏 -->
+<div class="header">
+    <div class="top-header">
+        <div class="container">
+            <div class="top-header-info">
+                <div class="top-header-left wow fadeInLeft animated" data-wow-delay=".5s">
+                    <p>Your thoughtful little travel helper</p>
+                </div>
+                <div class="top-header-right wow fadeInRight animated" data-wow-delay=".5s">
+                    <div class="top-header-right-info">
+                        <ul class="nav navbar-nav">
+                            <li id="denglu"><a href="${pageContext.request.contextPath }/QDlogin.html">登录</a></li>
+                            <li id="zhuce"><a href="${pageContext.request.contextPath }/reg.html">注册</a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
         </div>
     </div>
-</nav>
-
+    <div class="bottom-header">
+        <div class="container">
+            <div class="logo wow fadeInDown animated" data-wow-delay=".5s">
+                <h1><a href="${pageContext.request.contextPath }/index.html"><img src="${pageContext.request.contextPath }/statics/images/newimge/logo.jpg" alt="" /></a></h1>
+            </div>
+            <div class="top-nav wow fadeInRight animated" data-wow-delay=".5s">
+                <nav class="navbar navbar-default">
+                    <div class="container">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Menu
+                        </button>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="${pageContext.request.contextPath }/index.html" class="active">首页</a></li>
+                            <li><a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">景区<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="hvr-bounce-to-bottom" href="${pageContext.request.contextPath }/query.html?sort=2&s=">景区介绍</a></li>
+                                    <li><a class="hvr-bounce-to-bottom" href="${pageContext.request.contextPath }/reserves.html?sort=2&s=">门票预订</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="${pageContext.request.contextPath }/Hotel.html?s=">酒店</a></li>
+                            <li><a href="${pageContext.request.contextPath }/Strategy.html?s=">推文</a></li>
+                            <li><a href="${pageContext.request.contextPath }/query.html?sort=1">地区</a></li>
+                        </ul>
+                        <div class="clearfix"> </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
 <input type="hidden" id="user_ID" value="${userSession.user_id }">
 <input type="hidden" id="path" value="${pageContext.request.contextPath }">
+<script>
+    var user_account = "${userSession.user_account}";
+    var user_password = "${userSession.user_password}";
+    // 		var path = "${pageContext.request.contextPath}";
+    if (!user_account) {
+        document.getElementById("user").style.display = "none";
+        document.getElementById("logout").style.display = "none";
+    } else {
+        document.getElementById("denglu").style.display = "none";
+        document.getElementById("zhuce").style.display = "none";
+    }
+</script>
 
-
-<div style="margin-left: 10%; margin-right: 10%; margin-top: 5%" id="myModal">
-    <div class="modal-content">
-        <div align="center" style="margin-top: 2%">
-            <h3 class="modal-title" id="myModalLabel" style="color: #007bff">${Strategy.title}</h3>
-
-            <p>提到了：<font color="#ff8c00">${Strategy.recommend}</font>&emsp;发布时间：${Strategy.post_time}&emsp;点击量：<font
-                    color="red">${Strategy.clickNum}</font></p>
-
-            <img width="50%" height="50%"
-                 src="${pageContext.request.contextPath }/statics/images/${Strategy.strategy_cover}" alt="">
-        </div>
-        <div class="modal-body" style="margin-left: 20%; margin-right: 20%">
-            <div class="form-group">
-                <p id="content">&emsp;&emsp;${Strategy.content}</p>
-                <%--                <textarea name="content" cols="100" rows="8" id="content"--%>
-                <%--                          style="width: 100%; height: 100%;"></textarea>--%>
-            </div>
-
-            <%--     -------------------------------       以下是评论模块的代码------------------------------------------------------------------------------------%>
-
-            <div class="user-in-boxs">
-                <c:if test="${userSession.user_account != null && userSession.user_account != ''}">
-                    <nav class="navbar navbar-defaults navbar-static-top" role="navigation">
-                        <div class="container">
-                            <div class="navbar-header navbar-left">
-                                <a  class="navbar-brand" href="#">评论</a>
+<div class="blog">
+    <!-- container -->
+    <div class="container">
+        <div class="col-md-8 blog-top-left-grid">
+            <div class="left-blog left-single">
+                <div class="blog-left">
+                    <div class="single-left-left wow fadeInUp animated" data-wow-delay=".5s">
+                        <h3 class="modal-title" id="myModalLabel" style="color: #007bff">${Strategy.title}</h3>
+                        <p>提到了： <font color="#ff8c00">${Strategy.recommend}</font>&emsp;发布时间：${Strategy.post_time}&emsp;点击量：<font
+                                color="red">${Strategy.clickNum}</font></p>
+                        <img src="${pageContext.request.contextPath }/statics/images/${Strategy.strategy_cover}" alt="" />
+                    </div>
+                    <div class="blog-left-bottom wow fadeInUp animated" data-wow-delay=".5s">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <p id="content">${Strategy.content}</p>
                             </div>
-                            <form method="post" class="comment-send" style="left:0px" action="${pageContext.request.contextPath }/sys/addSComment">
-                                <div class="textarea-container">
-                                    <div class=" ping ">
-                                        <input type="text" name="strategy_id" value="${Strategy.strategy_id}"/>
-                                        <input type="text" name="user_id" value="${userSession.user_id}"/>
-                                        <input type="text" name="user_name" value="${userSession.user_account}"/>
-                                        <input type="text" name="user_head" value="${userSession.head}"/>
-                                        <input type="text" name="uncomments_id" value="0"/>
-                                        <input type="text" name="uncomment_id" value="0"/>
-                                        <input type="text" name="unUser_id" value="0"/>
-                                    </div>
-                                    <textarea rows="5" name="text" cols="20"placeholder="请自觉遵守互联网相关法律法规" calss="ipt-txt"></textarea>
-
-                                    <button type="submit" class="coment-submit" name="fabumsg">发表评论</button>
-
-                                </div>
-                            </form>
                         </div>
-                    </nav>
-                </c:if>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 blog-top-right-grid">
+            <div class="opinion">
                 <c:if test="${userSession.user_account == null || userSession.user_account == ''}">
                     <nav class="navbar navbar-defaults navbar-static-top" role="navigation">
                         <div class="container">
@@ -139,10 +157,28 @@
                         </div>
                     </nav>
                 </c:if>
-
+                <c:if test="${userSession.user_account != null && userSession.user_account != ''}">
+                    <h2 class="wow fadeInUp animated" data-wow-delay=".5s" style="color: #777">发表你的评论</h2>
+                    <form method="post" class="comment-send" style="left:0px" action="${pageContext.request.contextPath }/sys/addSComment">
+                        <div class="textarea-container">
+                            <div class=" ping ">
+                                <input type="text" name="strategy_id" value="${Strategy.strategy_id}"/>
+                                <input type="text" name="user_id" value="${userSession.user_id}"/>
+                                <input type="text" name="user_name" value="${userSession.user_account}"/>
+                                <input type="text" name="user_head" value="${userSession.head}"/>
+                                <input type="text" name="uncomments_id" value="0"/>
+                                <input type="text" name="uncomment_id" value="0"/>
+                                <input type="text" name="unUser_id" value="0"/>
+                            </div>
+                            <textarea rows="5" name="text" cols="20"placeholder="请自觉遵守互联网相关法律法规" class="wow fadeInLeft animated" data-wow-delay=".5s"></textarea>
+    <%--                        <button type="submit" class="wow fadeInRight animated" data-wow-delay=".5s" name="fabumsg">发表评论</button>--%>
+                            <button type="submit" class="wow fadeInRight animated animated" data-wow-delay=".5s" name="fabumsg" style="visibility: visible;animation-delay: 0.5s;animation-name: fadeInRight;border: #dff0d8;outline-color: #777;color: #353535b8;background: #ddddddab;font-size: 1em;padding: revert;margin-top: 15px">SEND</button>
+                        </div>
+                    </form>
+                </c:if>
                 <%--  --------------------------------------------------------------这是分隔符----------------------------------------------------------------------%>
 
-                <div class="list-group">
+                <div class="list-group" data-wow-delay=".5s">
                     <c:forEach items="${msge}" var="masege">
                         <c:set var="cid" value="${masege}" scope="session" /><!-- 把该条评论上传到session中 -->
 
@@ -153,24 +189,24 @@
                             String dateStr = sdf.format(uncom.getComment_time());//将获取到的时间转变为设定好的类型
                         %>
 
-                        <div class="user-face">
+                        <div class="user-face" data-wow-delay=".5s">
                             <img alt="${masege.user_name}" class="user-head" src="${pageContext.request.contextPath }/statics/images/${masege.user_head}">
                         </div>
-                        <div class="con well">
+                        <div class="con well" data-wow-delay=".5s">
                             <div class="user ">
                                 <span>用户名：</span><a href="#" target="_blank" class="user-name"> ${masege.user_name} </a>
                             </div>
                             <p class="text well">${masege.text}</p>
                             <div class="info">
-                                <span class="time"><%=dateStr%></span>
-                                <span class="huifu">回复</span>
+                                <span class="time" style="color: #999"><%=dateStr%></span>
+                                <span class="huifu" style="color: #999">回复</span>
 
                             </div>
                             <%
                                 int unnumc=uncom.getUn_number();
                                 if(unnumc>0){
                             %>
-                            <div class="reply-box">
+                            <div class="reply-box" style="margin-top: 15px">
                                 <%
                                     List<Strategy_comment> msgs= SCommentController.getS_CTwo(uncom);//查询该评论的回复评论
                                     request.setAttribute("msgss", msgs);
@@ -184,7 +220,7 @@
                                         String dateStras = sdfas.format(uom.getComment_time());//将获取到的时间转变为设定好的类型
                                     %>
 
-                                    <div class="reply-item well">
+                                    <div class="reply-item well" data-wow-delay=".5s">
                                         <a href="#" class="reply-face" style="top:0px;"><img src="${pageContext.request.contextPath }/statics/images/${mas.user_head}"></a>
                                         <div class="reply-con">
                                             <div class="user">
@@ -200,8 +236,8 @@
                                             </div>
                                         </div>
                                         <div class="info">
-                                            <span class="time"><%=dateStras%>></span>
-                                            <span class="huifu">回复</span>
+                                            <span class="time" style="color: #999"><%=dateStras%></span>
+                                            <span class="huifu" style="color: #999">回复</span>
 
                                         </div>
                                         <div class=" ping "><!-- 该div页面上不显示，只用于获取该评论的属性信息 -->
@@ -230,74 +266,15 @@
             </div>
 
             <%--            以上是评论的代码--%>
-
-            <div align="center">
-                <a id="fanhui" href="${pageContext.request.contextPath }/sys/user/userStrategy/${userSession.user_id }">
-                    <button
-                            type="button" class="btn btn-default">返回
-                    </button>
-                </a>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade" id="addHcomment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-show="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true"><span >&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">回复</h4>
-            </div>
-            <div class="modal-body">
-                <c:if test="${userSession.user_account != null && userSession.user_account != ''}">
-                    <form class="comment-send" style="left:0px" action="${pageContext.request.contextPath }/sys/addSComment" method="post">
-                        <div class=" ping "><!-- 该div页面上不显示，只用于获取该评论的属性信息 -->
-                            <input type="text" id="bgs" name="uncomment_id"><!--在模态框中不显示，用于获取该评论id，并通过form一起上传 -->
-                            <input type="text" id="bgss" name="uncomments_id"><!--在模态框中不显示，用于获取最外层的评论的id，并通过form一起上传 -->
-                            <input type="text" id="cmnss" name="unUser_name"><!--在模态框中不显示，用于获取该评论username，并通过form一起上传 -->
-                            <input type="text" id="cmnssid" name="unUser_id"><!--在模态框中不显示，用于获取该评论user_id，并通过form一起上传 -->
-                            <input type="text" name="strategy_id" value="${Strategy.strategy_id}"/>
-                            <input type="text" name="user_id" value="${userSession.user_id}"/>
-                            <input type="text" name="user_name" value="${userSession.user_account}"/>
-                            <input type="text" name="user_head" value="${userSession.head}"/>
-                        </div>
-                        <div class="user-face">
-                            <img class="user-head" src="${pageContext.request.contextPath }/statics/images/${userSession.head}">
-                        </div>
-
-                        <div class="textarea-container">
-                            <textarea id="huifuc" rows="4" name="text" cols="60" calss="ipt-txt"></textarea>
-                            <button type="submit" class="coment-submit" name="fabumsg">回复评论</button>
-
-                        </div>
-                    </form>
-                </c:if>
-                <c:if test="${userSession.user_account == null || userSession.user_account == ''}">
-                    <nav class="navbar navbar-defaults navbar-static-top" role="navigation">
-                        <div class="container">
-                            <h3>请登入才能发表评论！</h3>
-                        </div>
-                    </nav>
-                </c:if>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
             </div>
         </div>
+        <div class="clearfix"> </div>
     </div>
-</div>
+
+
 
 <div style="height: 20px"></div>
 
-<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-<script
-        src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
-<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
     window.onload =function(){

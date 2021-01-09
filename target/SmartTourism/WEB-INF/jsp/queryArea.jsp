@@ -29,238 +29,322 @@
         </style>--%>
     <script type="text/javascript"
             src="http://api.map.baidu.com/api?v=2.0&ak=S1WTke5UywSOGbY53rsiuA7DQVkOfNMF"></script>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- bootstrap-css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/bootstrap.css" type="text/css" media="all" />
+    <!--// bootstrap-css -->
+    <!-- css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/style.css" type="text/css" media="all" />
+    <!--// css -->
+    <!-- font-awesome icons -->
+    <link href="${pageContext.request.contextPath }/statics/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!-- font -->
+    <link href='#css?family=Francois+One' rel='stylesheet' type='text/css'>
+    <!-- //font -->
+    <script src="${pageContext.request.contextPath }/statics/js/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath }/statics/js/bootstrap.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/move-top.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
+    </script>
+    <!--animate-->
+    <link href="${pageContext.request.contextPath }/statics/css/animate.css" rel="stylesheet" type="text/css" media="all">
+    <script src="${pageContext.request.contextPath }/statics/js/wow.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
 
 
 </head>
 
 
 <body style="">
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header" style="margin-left: 10%">
-            <a class="navbar-brand" style="font-family: 楷体; font-size: 40px;"
-               href="${pageContext.request.contextPath }/index.html">智旅网</a>
-            <button type="button" class="navbar-toggle collapsed"
-                    data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-                    aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav"
-                style="margin-left: 15%">
-                <li role="presentation" class="active"><a href="${pageContext.request.contextPath }/index.html"
-                                                          style="color: white; background-color: #ff9d00;">首页</a></li>
-                <li role="presentation"><a
-                        href="${pageContext.request.contextPath }/query.html?sort=2&s="
-                        style="color: black">景点</a></li>
-
-                <li role="presentation"><a
-                        href="${pageContext.request.contextPath }/Hotel.html?s="
-                        style="color: black;">酒店</a></li>
-
-                <li role="presentation"><a
-                        href="${pageContext.request.contextPath }/Strategy.html?s="
-                        style="color: black;">攻略</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right" style="margin-right: 10%">
-                <li class="dropdown" id="user">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false"><img style="height: 25px; width: 25px; border-radius: 50%;"
-                                                  src="${pageContext.request.contextPath }/statics/images/${userSession.head}">
-                        欢迎您，${userSession.user_account}<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="${pageContext.request.contextPath }/sys/user/modify.html">修改个人信息</a></li>
-                        <li><a href="${pageContext.request.contextPath }/sys/user/writeStrategy.html">书写攻略</a></li>
-                        <li><a href="${pageContext.request.contextPath }/sys/user/userStrategy/${userSession.user_id }">我的攻略</a>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="${pageContext.request.contextPath }/logout.html">退出登录</a></li>
-                    </ul>
-                </li>
-
-                <li id="denglu"><a style="color: cornflowerblue"
-                                   href="${pageContext.request.contextPath }/QDlogin.html">登录</a></li>
-                <li id="zhuce"><a style="color: cornflowerblue"
-                                  href="${pageContext.request.contextPath }/reg.html">注册</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<input type="hidden" id="user_ID" value="${userSession.user_id }">
-<input type="hidden" id="path" value="${pageContext.request.contextPath }">
-
-<div class="col-xs-12 col-sm-12 col-md-12">
-    <div style="margin-left: 35%; margin-top: 80px">
-        <form class="navbar-form"
-              action="${pageContext.request.contextPath }/query.html">
-            <div class="form-group" style="width: 50%">
-                <input type="hidden" name="sort" value="1">
-                <input name="s" id="s" type="text" class="form-control" style="width: 100%" value="${s}"
-                       placeholder="搜地区/景点/攻略">
-            </div>
-            <button type="submit" class="btn btn-default"
-                    style="color: white; background-color: #ff0003;">搜索
-            </button>
-
-        </form>
-    </div>
-
-    <h2 style="margin-left:20%">${s}</h2>
-    <div>
-        <div style="margin-left: 20%; width: 40%; float: left">
-            <%--        <c:if test="${empty Area}">--%>
-            地区介绍：${Area.area_intro}
-            <br><br>
-            推荐路线：<font color="orange">${Area.tourist_route}</font>
-            <%--        </c:if>--%>
-        </div>
-
-        <div id="weather" style="margin-right: 15%; margin-bottom: 1%; font-size: 16px; float: right">
-            <div style="width: 100%; height: 100%" id="weather-html">
-
+<!-- 导航栏 -->
+<div class="header">
+    <div class="top-header">
+        <div class="container">
+            <div class="top-header-info">
+                <div class="top-header-left wow fadeInLeft animated" data-wow-delay=".5s">
+                    <p>Your thoughtful little travel helper</p>
+                </div>
+                <div class="top-header-right wow fadeInRight animated" data-wow-delay=".5s">
+                    <div class="top-header-right-info">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown" id="user">
+                                <a href="${pageContext.request.contextPath }/sys/user/userDetail.html" ><img style="height: 25px; width: 25px; border-radius: 50%;"
+                                                                                                             src="${pageContext.request.contextPath }/statics/images/${userSession.head}">
+                                    欢迎您，${userSession.user_account}</a>
+                            </li>
+                            <li id="denglu"><a href="${pageContext.request.contextPath }/QDlogin.html">登录</a></li>
+                            <li id="zhuce"><a href="${pageContext.request.contextPath }/reg.html">注册</a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="clearfix"> </div>
             </div>
         </div>
     </div>
-    <div id="allmap" style="width: 1000px;height: 550px;overflow: hidden;margin-left: 20%;font-family:微软雅黑"></div>
-
-
-    <div style="margin-left: 25%;  margin-top: 45px; /*margin-right: 10%*/">
-        <h3 style="color: #ff9d00">当地热门景点</h3>
-        <c:if test="${empty Scenerys}">
-            <p>抱歉！暂无内容！</p>
-        </c:if>
-        <div class="row">
-            <c:forEach items="${Scenerys}" var="Scenery">
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="${pageContext.request.contextPath }/Scenery/${Scenery.scenery_id}"
-                           style="text-decoration:none"><img
-                                src="${pageContext.request.contextPath }/statics/images/${Scenery.scenery_cover}"
-                                alt="...">
-                            <div class="caption">
-                                <h4>${Scenery.scenery_name}</h4>
-                                <p>${Scenery.scenery_intro}</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </c:forEach>
-        </div>
-    </div>
-
-
-    <div style="margin-left: 25%;  margin-top: 45px; margin-right: 25%">
-        <h3 style="color: #ff9d00">推荐攻略</h3>
-        <c:if test="${empty Strategys}">
-            <p>抱歉！暂无内容！</p>
-        </c:if>
-
-        <c:forEach items="${Strategys}" var="Strategy">
-            <div class="media">
-                <div class="media-left media-middle">
-                    <a href="${pageContext.request.contextPath }/StrategyDetail/${Strategy.strategy_id}">
-                        <img class="media-object" height="150px" width="250px"
-                             src="${pageContext.request.contextPath }/statics/images/${Strategy.strategy_cover}"
-                             alt="...">
-                    </a>
-                </div>
-                <div class="media-body">
-                    <a href="${pageContext.request.contextPath }/StrategyDetail/${Strategy.strategy_id}"
-                       style="text-decoration: none">
-                        <br>
-                        <h4 class="media-heading">${Strategy.title}</h4>
-                    </a>
-                    <br>
-                    <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                        &emsp;&emsp;${Strategy.content}</p>
-                    <div style="/*margin-top: 5%*/">
-                            ${Strategy.post_time}&emsp;&emsp;&emsp;&emsp;&emsp;${Strategy.recommend}</div>
-                </div>
+    <div class="bottom-header">
+        <div class="container">
+            <div class="logo wow fadeInDown animated" data-wow-delay=".5s">
+                <h1><a href="${pageContext.request.contextPath }/index.html"><img src="${pageContext.request.contextPath }/statics/images/newimge/logo.jpg" alt="" /></a></h1>
             </div>
-            <hr>
-        </c:forEach>
-    </div>
-
-
-    <div style="margin-left: 25%;  margin-top: 45px; /*margin-right: 25%*/">
-        <h3 style="color: #ff9d00">当地热门酒店</h3>
-        <c:if test="${empty Hotels}">
-            <p>抱歉！暂无内容！</p>
-        </c:if>
-        <div class="row">
-            <c:forEach items="${Hotels}" var="Hotel">
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="${Hotel.hotel_href}"
-                           style="text-decoration:none"><img
-                                src="${pageContext.request.contextPath }/statics/images/${Hotel.hotel_cover}"
-                                alt="...">
-                            <div class="caption">
-                                <h4>${Hotel.hotel_name}</h4>
-                                <p>${Hotel.accommodation}</p>
-                                <p>地址：${Hotel.hotel_address}</p>
-                            </div>
-                        </a>
+            <div class="top-nav wow fadeInRight animated" data-wow-delay=".5s">
+                <nav class="navbar navbar-default">
+                    <div class="container">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Menu
+                        </button>
                     </div>
-                </div>
-            </c:forEach>
-        </div>
-    </div>
-
-    <div style="margin-left: 25%;  margin-top: 45px; /*margin-right: 25%*/">
-        <h3 style="color: #ff9d00">当地热门餐厅</h3>
-        <c:if test="${empty Rests}">
-            <p>抱歉！暂无内容！</p>
-        </c:if>
-        <div class="row">
-            <c:forEach items="${Rests}" var="Rest">
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="${Rest.rest_href}"
-                           style="text-decoration:none"><img
-                                src="${pageContext.request.contextPath }/statics/images/${Rest.rest_cover}"
-                                alt="...">
-                            <div class="caption">
-                                <h4>${Rest.rest_name}</h4>
-                                <p>${Rest.rest_intro}</p>
-                                <p>地址：${Rest.rest_address}</p>
-                            </div>
-                        </a>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="${pageContext.request.contextPath }/index.html" class="active">首页</a></li>
+                            <li><a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">景区<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="hvr-bounce-to-bottom" href="${pageContext.request.contextPath }/query.html?sort=2&s=">景区介绍</a></li>
+                                    <li><a class="hvr-bounce-to-bottom" href="${pageContext.request.contextPath }/reserves.html?sort=2&s=">门票预订</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="${pageContext.request.contextPath }/Hotel.html?s=">酒店</a></li>
+                            <li><a href="${pageContext.request.contextPath }/Strategy.html?s=">推文</a></li>
+                            <li><a href="${pageContext.request.contextPath }/query.html?sort=1">地区</a></li>
+                        </ul>
+                        <div class="clearfix"> </div>
                     </div>
-                </div>
-            </c:forEach>
+                </nav>
+            </div>
         </div>
     </div>
 </div>
-<div style="height: 20px"></div>
-
-
-<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-<script
-        src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
-<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
-
-
+<input type="hidden" id="user_ID" value="${userSession.user_id }">
+<input type="hidden" id="path" value="${pageContext.request.contextPath }">
 <script>
     var user_account = "${userSession.user_account}";
     var user_password = "${userSession.user_password}";
-    var path = "${pageContext.request.contextPath}";
+    // 		var path = "${pageContext.request.contextPath}";
     if (!user_account) {
         document.getElementById("user").style.display = "none";
+        document.getElementById("logout").style.display = "none";
     } else {
         document.getElementById("denglu").style.display = "none";
         document.getElementById("zhuce").style.display = "none";
     }
 </script>
+<div style="margin-left: 35%; margin-top: 80px;margin-bottom: 25px;">
+    <form class="navbar-form"
+          action="${pageContext.request.contextPath }/query.html">
+                    <div class="form-group" style="width: 50%">
+                        <input type="hidden" name="sort" value="1">
+                        <input name="s" id="s" type="text" class="form-control" style="width: 100%" value="${s}"
+                               placeholder="搜地区/景点/攻略">
+                    </div>
+                    <button type="submit" class="btn btn-default"
+                            style="color: white; background-color: #337ab7d1;">搜索
+                    </button>
+
+    </form>
+</div>
+<div class="book-main">
+
+    <!-- 显示天气-->
+    <div class="left-module" style="
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px 30px 30px 30px;
+    overflow: inherit;
+    margin-top: 10px;
+">
+        <div class="hotel-HR-left">
+
+            <div id="weather" style="margin-bottom: 1%; font-size: 16px; float: right">
+                <div style="width: 100%; height: 100%" id="weather-html">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 显示简介和推荐路线-->
+    <div class="right-module" style="
+    background: #fff;
+    border-radius: 12px;
+    padding: 3px 30px 30px 30px;
+    overflow: inherit;
+">
+        <div class="AR-My-List">
+            <div class="HR-My-List-item1">
+                <h2 style="margin-left:40%">${s}</h2>
+                <div style="width: 100%; float: left">
+                    <%--        <c:if test="${empty Area}">--%>
+                    地区介绍：${Area.area_intro}
+                    <br><br>
+                    推荐路线：<font color="orange">${Area.tourist_route}</font>
+                    <%--        </c:if>--%>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <!--地图-->
+    <div id="allmap" style="width: 1000px;height: 550px;overflow: hidden;margin-left: 10%;font-family:微软雅黑;margin-top: 25px;"></div>
+
+    <!--景点-->
+    <div class="information" style="padding: 2em 0 0 0">
+        <div class="container">
+            <div class="popular-heading information-heading">
+                <h3 class="wow fadeInDown animated" data-wow-delay=".5s" style="color:#777;">热门景点</h3>
+            </div>
+            <c:if test="${empty Scenerys}">
+                <p>抱歉！暂无数据！</p>
+            </c:if>
+            <div class="information-grids" style="margin: 3em 0 0 0">
+                <c:forEach var="Scenery" items="${Scenerys}" varStatus="status">
+                    <a href="${pageContext.request.contextPath }/Scenery/${Scenery.scenery_id}">
+                        <div class="col-md-4 information-grid wow fadeInLeft animated" data-wow-delay=".5s"  style="width: 380px;height: 380px;">
+                            <div class="information-info">
+                                <div class="information-grid-img">
+                                    <img src="${pageContext.request.contextPath }/statics/images/${Scenery.scenery_cover}" alt="" />
+                                </div>
+                                <div class="information-grid-info">
+                                    <h4 style="color: #777;font-size: 25px">${Scenery.scenery_name} </h4>
+                                    <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">&emsp;
+                                            ${Scenery.scenery_intro}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </c:forEach>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+
+    <!--攻略-->
+    <div class="information" style="padding: 2em 0 0 0">
+        <div class="container">
+            <c:if test="${empty Strategys}">
+                <p>抱歉！暂无数据！</p>
+            </c:if>
+            <%--<div style="margin-left: 20%;  /*margin-top: 5%;*/ margin-right: 15%">--%>
+            <div class="popular-heading information-heading" style="margin-bottom: 35px">
+                <h3 class="wow fadeInDown animated" data-wow-delay=".5s" style="color:#777;">推荐攻略</h3>
+            </div>
+            <c:forEach items="${Strategys}" var="Strategy">
+                <div class="information-grid wow fadeInLeft animated" data-wow-delay=".5s">
+                    <div class="information-info">
+                        <div class="media">
+                            <div class="media-left media-middle">
+                                <a href="${pageContext.request.contextPath }/StrategyDetail/${Strategy.strategy_id}">
+                                    <img class="media-object" height="150px" width="250px"
+                                         src="${pageContext.request.contextPath }/statics/images/${Strategy.strategy_cover}"
+                                         alt="...">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <a href="${pageContext.request.contextPath }/StrategyDetail/${Strategy.strategy_id}"
+                                   style="text-decoration: none">
+                                    <br>
+                                    <h4 class="media-heading">${Strategy.title}</h4>
+                                </a>
+                                <br>
+                                <p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                    &emsp;&emsp;${Strategy.content}</p>
+                                <div style="/*margin-top: 5%*/">
+                                        ${Strategy.post_time}&emsp;&emsp;&emsp;&emsp;&emsp;${Strategy.recommend}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </c:forEach>
+        </div>
+    </div>
+
+    <!--酒店-->
+    <div class="information" style="padding: 2em 0 0 0">
+        <div class="container">
+            <c:if test="${empty Hotels}">
+                <p>抱歉！暂无数据！</p>
+            </c:if>
+            <%--<div style="margin-left: 20%;  /*margin-top: 5%;*/ margin-right: 15%">--%>
+            <div class="popular-heading information-heading" style="margin-bottom: 35px">
+                <h3 class="wow fadeInDown animated" data-wow-delay=".5s" style="color:#777;">当地热门酒店</h3>
+            </div>
+            <c:forEach items="${Hotels}" var="Hotel">
+                <div class="information-grid wow fadeInLeft animated" data-wow-delay=".5s">
+                    <div class="information-info">
+                        <div class="media">
+                            <div class="media-left media-middle">
+                                <a href="${pageContext.request.contextPath }/sys/user/userAddHR.html?hotel_id=${Hotel.hotel_id}">
+                                    <img class="media-object" height="150px" width="250px"
+                                         src="${pageContext.request.contextPath }/statics/images/${Hotel.hotel_cover}"
+                                         alt="...">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <a href="${pageContext.request.contextPath }/sys/user/userAddHR.html?hotel_id=${Hotel.hotel_id}"
+                                   style="text-decoration: none">
+                                        <%--                        <br>--%>
+                                    <h4 class="media-heading">${Hotel.hotel_name}</h4>
+                                </a>
+                                <br>
+                                &emsp;&emsp;${Hotel.accommodation}
+                                <div style="margin-top: 5%">地址：
+                                        ${Hotel.hotel_address}<%--&emsp;&emsp;&emsp;&emsp;&emsp;--%><br>联系电话：${Hotel.hotel_tel}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </c:forEach>
+
+        </div>
+    </div>
+
+    <!--餐厅-->
+    <div class="information" style="padding: 2em 0 0 0">
+        <div class="container">
+            <c:if test="${empty Rests}">
+                <p>抱歉！暂无内容！</p>
+            </c:if>
+            <%--<div style="margin-left: 20%;  /*margin-top: 5%;*/ margin-right: 15%">--%>
+            <div class="popular-heading information-heading" style="margin-bottom: 35px">
+                <h3 class="wow fadeInDown animated" data-wow-delay=".5s" style="color:#777;">当地热门餐厅</h3>
+            </div>
+            <c:forEach items="${Rests}" var="Rest">
+                <a href="${Rest.rest_href}" style="text-decoration:none">
+                    <div class="col-md-4 information-grid wow fadeInLeft animated" data-wow-delay=".5s"  style="width: 380px;height: 550px;">
+                        <div class="information-info" style="height: 550px;background: #fff">
+                            <div class="information-grid-img">
+                                <img src="${pageContext.request.contextPath }/statics/images/${Rest.rest_cover}" alt="...">
+                            </div>
+                            <div class="information-grid-info">
+                                <h4>${Rest.rest_name}</h4>
+                                <p>${Rest.rest_intro}</p>
+                                <p>地址：${Rest.rest_address}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </c:forEach>
+        </div>
+    </div>
+
+<div style="height: 20px"></div>
+
 
 <script type="text/javascript">
     // 天气API

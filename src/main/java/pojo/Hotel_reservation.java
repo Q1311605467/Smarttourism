@@ -15,30 +15,38 @@ public class Hotel_reservation {
     private String room_type;
     private int reserv_num;
     private int is_breakfast;
-    private int tel;
+    private String tel;
     private int is_cancel;
     private float total_cost;
+
     public int getReserv_id() {
         return reserv_id;
     }
+
     public void setReserv_id(int reserv_id) {
         this.reserv_id = reserv_id;
     }
+
     public int getHotel_id() {
         return hotel_id;
     }
+
     public void setHotel_id(int hotel_id) {
         this.hotel_id = hotel_id;
     }
+
     public int getArea_id() {
         return area_id;
     }
+
     public void setArea_id(int area_id) {
         this.area_id = area_id;
     }
+
     public int getUser_id() {
         return user_id;
     }
+
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
@@ -99,11 +107,11 @@ public class Hotel_reservation {
         this.is_breakfast = is_breakfast;
     }
 
-    public int getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 

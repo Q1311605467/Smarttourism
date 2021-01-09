@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,6 +19,40 @@
     <script src="${pageContext.request.contextPath }/statics/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/statics/js/userList.js"></script>
     <script src="${pageContext.request.contextPath}/statics/js/strategyList.js"></script>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- bootstrap-css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/bootstrap.css" type="text/css" media="all" />
+    <!--// bootstrap-css -->
+    <!-- css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/style.css" type="text/css" media="all" />
+    <!--// css -->
+
+    <!-- font-awesome icons -->
+    <link href="${pageContext.request.contextPath }/statics/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!-- font -->
+    <link href='#css?family=Francois+One' rel='stylesheet' type='text/css'>
+    <!-- //font -->
+    <script src="${pageContext.request.contextPath }/statics/js/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath }/statics/js/bootstrap.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/move-top.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
+    </script>
+    <!--animate-->
+    <link href="${pageContext.request.contextPath }/statics/css/animate.css" rel="stylesheet" type="text/css" media="all">
+    <script src="${pageContext.request.contextPath }/statics/js/wow.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
 
 </head>
 <style>
@@ -36,51 +69,66 @@
 </style>
 
 <body style="">
-<input type="hidden" class="path" id="path" value="${pageContext.request.contextPath}">
-<nav class="navbar navbar-default">
-    <div class="container">
-        <!--小屏幕导航按钮和logo-->
-        <div class="navbar-header">
-            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="adminhome.jsp" class="navbar-brand"> Admin</a>
+<!-- 导航栏 -->
+<div class="header">
+    <div class="top-header">
+        <div class="container">
+            <div class="top-header-info">
+                <div class="top-header-left wow fadeInLeft animated" data-wow-delay=".5s">
+                    <p>Your thoughtful little travel helper</p>
+                </div>
+                <div class="top-header-right wow fadeInRight animated" data-wow-delay=".5s">
+                    <div class="top-header-right-info">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown" id="user">
+                                <a href="${pageContext.request.contextPath }/sys/user/userDetail.html" ><img style="height: 25px; width: 25px; border-radius: 50%;"
+                                                                                                             src="${pageContext.request.contextPath }/statics/images/${userSession.head}">
+                                    欢迎您，${userSession.user_account}</a>
+                            </li>
+                            <li id="denglu"><a href="${pageContext.request.contextPath }/QDlogin.html">登录</a></li>
+                            <li id="zhuce"><a href="${pageContext.request.contextPath }/reg.html">注册</a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
         </div>
-        <!--小屏幕导航按钮和logo-->
-        <!--导航-->
-
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li ><a href="../statistic.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;后台首页</a></li>
-                <li ><a href="../userList.html"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;用户管理</a></li>
-                <li><a href="../guideList.html"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;导游管理</a></li>
-                <li><a href="../restList.html"><span class="glyphicon  glyphicon-glass"></span>&nbsp;&nbsp;餐厅管理</a></li>
-                <li><a href="../sceneryList.html"><span class="glyphicon glyphicon-camera"></span>&nbsp;&nbsp;景区管理</a></li>
-                <li><a href="../htAreaList.html"><span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;地区管理</a></li>
-                <li><a href="../hotelList.html"><span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;酒店管理</a></li>
-                <li class="active"><a href="../strategyReviewedList.html"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;旅游推文管理</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        admin
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="dLabel">
-                        <li><a href="../index.html"><span class="glyphicon glyphicon-screenshot"></span>&nbsp;&nbsp;前台首页</a></li>
-                        <%--                        <li><a href="Admin_person.jsp"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;个人主页</a></li>--%>
-                        <%--                        <li><a href="Person_admin.jsp"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;个人设置</a></li>--%>
-                    </ul>
-                </li>
-                <li><a href="logout.html"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;退出</a></li>
-            </ul>
-        </div>
-        <!--导航-->
     </div>
-</nav>
+    <div class="bottom-header">
+        <div class="container">
+            <div class="logo wow fadeInDown animated" data-wow-delay=".5s">
+                <h1><a href="${pageContext.request.contextPath }/index.html"><img src="${pageContext.request.contextPath }/statics/images/newimge/logo.jpg" alt="" /></a></h1>
+            </div>
+            <div class="top-nav wow fadeInRight animated" data-wow-delay=".5s">
+                <nav class="navbar navbar-default">
+                    <div class="container">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Menu
+                        </button>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="${pageContext.request.contextPath }/index.html" class="active">首页</a></li>
+                            <li><a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">景区<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="hvr-bounce-to-bottom" href="${pageContext.request.contextPath }/query.html?sort=2&s=">景区介绍</a></li>
+                                    <li><a class="hvr-bounce-to-bottom" href="${pageContext.request.contextPath }/reserves.html?sort=2&s=">门票预订</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="${pageContext.request.contextPath }/Hotel.html?s=">酒店</a></li>
+                            <li><a href="${pageContext.request.contextPath }/Strategy.html?s=">推文</a></li>
+                            <li><a href="${pageContext.request.contextPath }/query.html?sort=1">地区</a></li>
+                        </ul>
+                        <div class="clearfix"> </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
 <input type="hidden" id="user_ID" value="${userSession.user_id }">
+<input type="hidden" id="path" value="${pageContext.request.contextPath }">
 
 <div style="margin-left: 10%; margin-right: 10%; margin-top: 0%" id="myModal">
     <div class="modal-content">
@@ -101,267 +149,24 @@
             </div>
 
             <div align="center">
-                    <a  class="pass" id="">
-                        <button type="button" class="btn1 btn btn-default" data-toggle="modal" data-target="#myModal1">
-                            审核分析
-                        </button>
-                    </a>
+                <a  class="pass" id="passStrategy" onclick="passStrategy(${Strategy.strategy_id})">
+                    <button type="button" class="btn1 btn btn-default">
+                        审核通过
+                    </button>
+                </a>
+                <a class="pass" id="unPassStrategy" onclick="unPassStrategy(${Strategy.strategy_id})">
+                    <button type="button" class="btn2 btn btn-default">
+                        审核不通过
+                    </button>
+                </a>
             </div>
 
         </div>
     </div>
 </div>
-<%--Model--%>
-<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <sbutton type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></sbutton>
-                <h4 class="modal-title" id="#">
-                    <fieldset>
-                        <c:if test="${checkTextResult.conclusionType==1}">
-                            <h4 style="color: #4cae4c;font-weight: bold" >
-                                <img  src="${pageContext.request.contextPath }/statics/images/ok.jpg" alt=""> 审核通过
-                            </h4>
-                        </c:if>
-                        <c:if test="${checkTextResult.conclusionType==2}">
-                            <h4 style="color: #e90205;font-weight: bold">
-                                <img  src="${pageContext.request.contextPath }/statics/images/no.jpg" alt=""> 审核不通过
-                            </h4>
-                        </c:if>
-                    </fieldset>
-
-                </h4>
-            </div>
-            <div class="modal-bofont-weight: bolddy">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th width="30%">审核维度</th>
-                        <th width="20%">状态</th>
-                        <th width="20%">置信度</th>
-                        <th width="30%">违禁词</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:if test="${checkTextResult.conclusionType==1}">
-                        <tr>
-                            <td>官方默认违禁词</td>
-                            <td style="color: green">通过</td>
-                            <td>0.0</td>
-                            <td>无</td>
-                        </tr>
-                        <tr>
-                            <td>暴恐违禁</td>
-                            <td style="color: green">通过</td>
-                            <td>0.0</td>
-                            <td>无</td>
-                        </tr>
-                        <tr>
-                            <td>文本色情</td>
-                            <td style="color: green">通过</td>
-                            <td>0.0</td>
-                            <td>无</td>
-                        </tr>
-                        <tr>
-                            <td>政治敏感</td>
-                            <td style="color: green">通过</td>
-                            <td>0.0</td>
-                            <td>无</td>
-                        </tr>
-                        <tr>
-                            <td>恶意推广</td>
-                            <td style="color: green">通过</td>
-                            <td>0.0</td>
-                            <td>无</td>
-                        </tr>
-                        <tr>
-                            <td>低俗辱骂</td>
-                            <td style="color: green">通过</td>
-                            <td>0.0</td>
-                            <td>无</td>
-                        </tr>
-                        <tr>
-                            <td>恶意推广-联系方式</td>
-                            <td style="color: green">通过</td>
-                            <td>0.0</td>
-                            <td>无</td>
-                        </tr>
-                        <tr>
-                            <td>恶意推广-软文推广</td>
-                            <td style="color: green">通过</td>
-                            <td>0.0</td>
-                            <td>无</td>
-                        </tr>
-                        <tr>
-                            <td>广告法审核</td>
-                            <td style="color: green">通过</td>
-                            <td>0.0</td>
-                            <td>无</td>
-                        </tr>
-                    </c:if>
-
-                    <c:if test="${checkTextResult.conclusionType!=1}">
-                        <c:forEach items="${checkTextResult.data}" var="data">
-                            <tr>
-                                <c:if test="${data.type==11&&data.subType==0}">
-                                    <td>官方默认违禁词</td>
-                                    <td style="color: red">不通过</td>
-                                    <td>1.0</td>
-                                    <td>
-                                        <c:forEach items="${data.hits}" var="hits">
-                                            <c:forEach items="${hits.words}" var="words">
-                                                ${words.toString()}
-                                            </c:forEach>
-                                        </c:forEach>
-                                    </td>
-                                </c:if>
-                            </tr>
-
-
-                            <tr>
-                                <c:if test="${data.type==12&&data.subType==0}">
-                                    <td>低质灌水</td>
-                                    <td style="color: red">不通过</td>
-                                    <td>${data.hits.get(0).probability}</td>
-                                    <td>
-                                        <c:forEach items="${data.hits.get(0).words}" var="words">
-                                            ${words.toString()}
-                                        </c:forEach>
-                                    </td>
-                                </c:if>
-                            </tr>
-                            <tr>
-                                <c:if test="${data.type==12&&data.subType==1}">
-                                    <td>暴恐违禁</td>
-                                    <td style="color: red">不通过</td>
-                                    <td>${data.hits.get(0).probability}</td>
-                                    <td>
-                                        <c:forEach items="${data.hits.get(0).words}" var="words">
-                                            ${words.toString()}
-                                        </c:forEach>
-                                    </td>
-                                </c:if>
-                            </tr>
-                            <tr>
-                                <c:if test="${data.type==12&&data.subType==2}">
-                                    <td>文本色情</td>
-                                    <td style="color: red">不通过</td>
-                                    <td>${data.hits.get(0).probability}</td>
-                                    <td>
-                                        <c:forEach items="${data.hits}" var="hits">
-                                            <c:forEach items="${hits.words}" var="words">
-                                                ${words.toString()}
-                                            </c:forEach>
-                                        </c:forEach>
-                                    </td>
-                                </c:if>
-                            </tr>
-                            <tr>
-                                <c:if test="${data.type==12&&data.subType==3}">
-                                    <td>政治敏感</td>
-                                    <td style="color: red">不通过</td>
-                                    <td>${data.hits.get(0).probability}</td>
-                                    <td>
-                                        <c:forEach items="${data.hits}" var="hits">
-                                            <c:forEach items="${hits.words}" var="words">
-                                                ${words.toString()}
-                                            </c:forEach>
-                                        </c:forEach>
-                                    </td>
-                                </c:if>
-                            </tr>
-                            <tr>
-                                <c:if test="${data.type==12&&data.subType==5}">
-                                    <td>低俗辱骂</td>
-                                    <td style="color: red">不通过</td>
-                                    <td>${data.hits.get(0).probability}</td>
-                                    <td>
-                                        <c:forEach items="${data.hits}" var="hits">
-                                            <c:forEach items="${hits.words}" var="words">
-                                                ${words.toString()}
-                                            </c:forEach>
-                                        </c:forEach>
-                                    </td>
-                                </c:if>
-                            </tr>
-                            <tr>
-                                <c:if test="${data.type==12&&data.subType==6}">
-                                    <td>恶意推广-联系方式</td>
-                                    <td style="color: red">不通过</td>
-                                    <td>${data.hits.get(0).probability}</td>
-                                    <td>
-                                        <c:forEach items="${data.hits}" var="hits">
-                                            <c:forEach items="${hits.words}" var="words">
-                                                ${words.toString()}
-                                            </c:forEach>
-                                        </c:forEach>
-                                    </td>
-                                </c:if>
-                            </tr>
-                            <tr>
-                                <c:if test="${data.type==12&&data.subType==7}">
-                                    <td>恶意推广-软文推广</td>
-                                    <td style="color: red">不通过</td>
-                                    <td>${data.hits.get(0).probability}</td>
-                                    <td>
-                                        <c:forEach items="${data.hits}" var="hits">
-                                            <c:forEach items="${hits.words}" var="words">
-                                                ${words.toString()}
-                                            </c:forEach>
-                                        </c:forEach>
-                                    </td>
-                                </c:if>
-                            </tr>
-                            <tr>
-                                <c:if test="${data.type==12&&data.subType==8}">
-                                    <td>广告法审核</td>
-                                    <td style="color: red">不通过</td>
-                                    <td>${data.hits.get(0).probability}</td>
-                                    <td>
-                                        <c:forEach items="${data.hits}" var="hits">
-                                            <c:forEach items="${hits.words}" var="words">
-                                                ${words.toString()}
-                                            </c:forEach>
-                                        </c:forEach>
-                                    </td>
-                                </c:if>
-                            </tr>
-
-                        </c:forEach>
-                    </c:if>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <div align="center">
-                    <a  class="pass" id="passStrategy" onclick="passStrategy(${Strategy.strategy_id})">
-                        <button type="button" class="btn1 btn btn-default">
-                            审核通过
-                        </button>
-                    </a>
-                    <a class="pass" id="unPassStrategy" onclick="unPassStrategy(${Strategy.strategy_id})">
-                        <button type="button" class="btn2 btn btn-default">
-                            审核不通过
-                        </button>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-<%--ModelEnd--%>
-
 
 <div style="height: 20px"></div>
 
-<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-<script
-        src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
-<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 
 <script type="text/javascript"
         src="${pageContext.request.contextPath }/statics/js/StrategyDetail.js"></script>

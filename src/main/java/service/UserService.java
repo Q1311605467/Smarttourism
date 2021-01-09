@@ -1,9 +1,8 @@
 package service;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import pojo.*;
+
+import java.util.List;
 
 public interface UserService {
     public User login(String user_account, String user_password);
@@ -17,6 +16,10 @@ public interface UserService {
     public int updateUser(User user);
 
     public int destoryUser(int user_id);
+
+    public int AddHR(Hotel_reservation reserve);
+
+    public int AddSR(Scenery_Reservation reserve);
 
     public int addStrategy(Strategy strategy);
 

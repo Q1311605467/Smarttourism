@@ -20,10 +20,11 @@ $(function () {
 $(function () {
     var user_account = $("#user_account");
     var p1 = $("#p1");
+    var p2 = $("#p2");
     var path = $("#path").val();
 
     user_account.bind("blur", function () {
-        //ajax后台验证-
+        //ajax后台验证--email是否已存在
         $.ajax({
             type: "GET",//请求类型
             url: path + "/user_account_exist.json",//请求的url
@@ -32,7 +33,10 @@ $(function () {
             success: function (data) {//data：返回数据（json对象）
                 if (data.user_account == "exist") {//账号已存在，错误提示
                     p1.html("<p style='color: red'>*该用户账号已存在</p>");
-                } else {//账号可用，正确提示
+
+                }
+                else {//账号可用，正确提示
+
                     p1.html("<p style='color: green'>*该账号可以使用</p>");
                 }
             },
