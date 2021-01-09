@@ -34,7 +34,7 @@ public class AdminController {
     private Logger logger = Logger.getLogger(String.valueOf(UserController.class));
     @Resource
     private AdminService adminService;
-    @RequestMapping(value = "/sys/adminList.html",method = RequestMethod.GET)
+    @RequestMapping(value = "/sys/adminList",method = RequestMethod.GET)
     public String getUserList(Model model, @RequestParam(value = "pageIndex",required = false)String pageIndex) throws Exception{
         List<Admin>adminList = null;
         logger.info("adminList ---- > pageIndex: " + pageIndex); //跳转页码
@@ -77,11 +77,10 @@ public class AdminController {
 
         return "adminList";
     }
-    @RequestMapping(value = "/sys/addadmin",method = RequestMethod.POST)
-    public String addGuide(HttpSession session, HttpServletRequest request,
+    @RequestMapping(value = "/sys/addAdmin",method = RequestMethod.POST)
+    public String addAdmin(HttpSession session, HttpServletRequest request,
                            @RequestParam(value ="admin_account", required = false) String admin_account,
-                           @RequestParam(value ="admin_password", required = false) String admin_password,
-                           @RequestParam(value ="admin_password1", required = false) String admin_password1
+                           @RequestParam(value ="admin_password", required = false) String admin_password
                            ){
 
         Admin admin = new Admin();
@@ -91,6 +90,7 @@ public class AdminController {
         admin.setAdmin_supreme(0);
         adminService.insertAdmin(admin);
         return "redirect:/sys/adminList";
+        //"redirect:/sys/guideList"
     }
     @RequestMapping(value = "/sys/adminSearch",method = RequestMethod.GET)
     public String adminSearch(){
@@ -135,6 +135,4 @@ public class AdminController {
         }
         return JSONArray.toJSONString(flag);
     }
-
-
 }

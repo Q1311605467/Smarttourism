@@ -50,7 +50,7 @@ public class LogginController {
     }
     @RequestMapping(value="/sys/main.html")
     public String main(HttpSession session){
-        return "redirect:/sys/userList.html";
+        return "redirect:/sys/statistic.html";
     }
 
 }

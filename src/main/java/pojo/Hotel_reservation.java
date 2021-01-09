@@ -1,6 +1,8 @@
 package pojo;
 
 
+import java.util.Date;
+
 public class Hotel_reservation {
     private int reserv_id;
     private int hotel_id;
@@ -8,42 +10,35 @@ public class Hotel_reservation {
     private int user_id;
     private int room_id;
     private String hotel_name;
-    private String in_time;
-    private String out_time;
+    private Date in_time;
+    private Date out_time;
     private String room_type;
     private int reserv_num;
     private int is_breakfast;
     private int tel;
     private int is_cancel;
-
+    private float total_cost;
     public int getReserv_id() {
         return reserv_id;
     }
-
     public void setReserv_id(int reserv_id) {
         this.reserv_id = reserv_id;
     }
-
     public int getHotel_id() {
         return hotel_id;
     }
-
     public void setHotel_id(int hotel_id) {
         this.hotel_id = hotel_id;
     }
-
     public int getArea_id() {
         return area_id;
     }
-
     public void setArea_id(int area_id) {
         this.area_id = area_id;
     }
-
     public int getUser_id() {
         return user_id;
     }
-
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
@@ -64,19 +59,19 @@ public class Hotel_reservation {
         this.hotel_name = hotel_name;
     }
 
-    public String getIn_time() {
+    public Date getIn_time() {
         return in_time;
     }
 
-    public void setIn_time(String in_time) {
+    public void setIn_time(Date in_time) {
         this.in_time = in_time;
     }
 
-    public String getOut_time() {
+    public Date getOut_time() {
         return out_time;
     }
 
-    public void setOut_time(String out_time) {
+    public void setOut_time(Date out_time) {
         this.out_time = out_time;
     }
 
@@ -118,5 +113,13 @@ public class Hotel_reservation {
 
     public void setIs_cancel(int is_cancel) {
         this.is_cancel = is_cancel;
+    }
+
+    public float getTotal_cost() {
+        return total_cost;
+    }
+
+    public void setTotal_cost(float total_cost) {
+        this.total_cost = total_cost;
     }
 }

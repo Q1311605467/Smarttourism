@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.Scenery_reservationMapper">
+
+    <insert id="AddSR">
+        insert into scenery_reservation(scenery_id,user_id,scenery_name,Sdate,reserv_num,tel,is_cancel,total_cost_s)
+        values (#{scenery_id},#{user_id},#{scenery_name},#{Sdate},#{reserv_num},#{tel},0,#{total_cost_s});
+    </insert>
+
+    <update id="cancelSR">
+        update scenery_reservation set is_cancel = 1 where scen_reserv_id = #{scen_reserv_id};
+    </update>
+
+    <select id="getMySceneryReserve" resultType="Scenery_Reservation">
+        select * from scenery_reservation where user_id = #{user_id};
+    </select>
+
+    <select id="getCount" resultType="java.lang.Integer">
+    select  count(*) from scenery_reservation ;
+  </select>
+    <select id="getReservationList" parameterType="java.lang.Integer" resultType="pojo.Scenery_Reservation">
+    select  * from scenery_reservation  group  by scen_reserv_id asc  limit #{currentPageNo},#{pageSize};
+    </select>
+
+
+
+</mapper>

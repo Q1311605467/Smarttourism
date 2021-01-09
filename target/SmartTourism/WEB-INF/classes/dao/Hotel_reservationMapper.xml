@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.Hotel_reservationMapper">
+
+    <!-- 增加酒店预约 -->
+    <insert id="AddHR">
+        insert into Hotel_reservation(hotel_id,area_id,user_id,room_id,hotel_name,
+        in_time,out_time,room_type,reserv_num,is_breakfast,tel,is_cancel,total_cost) values
+        (#{hotel_id},#{area_id},#{user_id},#{room_id},#{hotel_name},#{in_time},
+        #{out_time},#{room_type},#{reserv_num},#{is_breakfast},#{tel},0,#{total_cost});
+    </insert>
+    <!-- 取消酒店预约 -->
+    <update id="cancelReserve" >
+        update Hotel_reservation set is_cancel = 1 where reserv_id = #{reserv_id};
+    </update>
+    <!-- 获取酒店预约信息列表 -->
+    <select id="getHotle_ReserveList" resultType="Hotel_reservation">
+        select * from Hotel_reservation order by in_time asc limit #{currentPageNo},#{pageSize};
+    </select>
+    <!-- 获取用户个人酒店预约信息列表 -->
+    <select id="getMyHotle_Reserve" resultType="Hotel_reservation">
+        select * from Hotel_reservation where user_id = #{user_id};
+    </select>
+    <!-- 获取用户个人酒店预约信息总条数 -->
+    <select id="getMyHotle_ReserveCount" resultType="java.lang.Integer">
+    select  count(*) from Hotel_reservation where user_id = #{user_id};
+  </select>
+    <!-- 获取酒店预约信息总条数 -->
+    <select id="getHotle_ReserveCount" resultType="java.lang.Integer">
+    select  count(*) from Hotel_reservation ;
+  </select>
+
+</mapper>

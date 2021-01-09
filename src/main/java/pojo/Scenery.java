@@ -11,6 +11,7 @@ public class Scenery {
     private int browse_num;
     private String comment;
     private int area_id;
+    private float scenery_cost;
 
     public int getScenery_id() {
         return scenery_id;
@@ -90,5 +91,13 @@ public class Scenery {
 
     public void setArea_id(int area_id) {
         this.area_id = area_id;
+    }
+
+    public float getScenery_cost() {
+        return scenery_cost;
+    }
+
+    public void setScenery_cost(float scenery_cost) {
+        this.scenery_cost = scenery_cost;
     }
 }

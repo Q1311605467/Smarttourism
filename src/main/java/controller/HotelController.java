@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pojo.Hotel;
+import pojo.Hotel_room;
 import service.HotelService;
+import service.Hotel_roomService;
 import tools.Constants;
 import tools.PageSupport;
 
@@ -24,6 +26,8 @@ public class HotelController {
     Logger logger = Logger.getLogger(String.valueOf(HotelController.class));
     @Resource
     private HotelService hotelService;
+    @Resource
+    private Hotel_roomService hotel_roomService;
 
     @RequestMapping(value = "/sys/hotelList",method = RequestMethod.GET)
     public String getHotelList(Model model, @RequestParam(value = "pageIndex",required = false)String pageIndex) throws Exception{
@@ -138,6 +142,7 @@ public class HotelController {
         model.addAttribute("hotel", hotel);
         return "hotelUpdate";
     }
+
     @RequestMapping(value = "/sys/hotelUpdate",method = RequestMethod.POST)
     public String hotelUpdate(HttpSession session, HttpServletRequest request,
                               @RequestParam(value ="hotel_id", required = false) String hotel_id,
@@ -200,7 +205,7 @@ public class HotelController {
     }
     @RequestMapping(value="/sys/hotelDel",method=RequestMethod.GET)
     @ResponseBody
-    public Object guideDel(@RequestParam(value="hotel_id" ,required=false) String hotel_id)
+    public Object hotelDel(@RequestParam(value="hotel_id" ,required=false) String hotel_id)
     {
         boolean flag = false;
         if(hotelService.hotelDel(Integer.valueOf(hotel_id))>0){
@@ -216,4 +221,66 @@ public class HotelController {
         model.addAttribute("hotelList",hotelList);
         return "hotelSearch";
     }
+    /*
+     * 酒店房间管理
+     * */
+    @RequestMapping(value="/sys/hotelRoom/{hotel_id}",method=RequestMethod.GET)
+    public String hotelRoom(@PathVariable(value="hotel_id") String hotel_id, Model model, HttpServletRequest request) {
+        logger.info("id-----+--------"+hotel_id);
+        List<Hotel_room>hotelroomlist;
+        hotelroomlist= hotel_roomService.getHotelRoomList(Integer.valueOf(hotel_id));
+        model.addAttribute("hotelRoomList",hotelroomlist);
+        model.addAttribute("hotel_id",hotel_id);
+        return "hotelRoomList";
+    }
+    @RequestMapping(value = "/sys/addRoom",method = RequestMethod.POST)
+    public String addGuide(HttpSession session, HttpServletRequest request,
+                           @RequestParam(value ="hotel_id", required = false) String hotel_id,
+                           @RequestParam(value ="room_type", required = false) String room_type,
+                           @RequestParam(value ="cost", required = false) String cost
+                           ){
+        Hotel_room hotel_room = new Hotel_room();
+        hotel_room.setCost(Float.valueOf(cost));
+        hotel_room.setHotel_id(Integer.valueOf(hotel_id));
+        hotel_room.setRoom_type(room_type);
+        hotel_roomService.insertRoom(hotel_room);
+        return "redirect:/sys/hotelRoom/"+hotel_id;
+    }
+
+    @RequestMapping(value="/sys/roomDel",method=RequestMethod.GET)
+    @ResponseBody
+    public Object roomDel(@RequestParam(value="room_id" ,required=false) String room_id)
+        {
+        boolean flag = false;
+        logger.info("roo_id del "+room_id);
+        flag = hotel_roomService.deleteByPrimaryKey(Integer.valueOf(room_id));
+        return JSONArray.toJSONString(flag);
+    }
+
+    @RequestMapping(value="/sys/roomDetail/{room_id}",method=RequestMethod.GET)
+    public String roomDetail(@PathVariable(value="room_id") String room_id, Model model, HttpServletRequest request) {
+        Hotel_room hotel_room;
+
+        hotel_room  = hotel_roomService.selectByPrimaryKey(Integer.valueOf(room_id));
+
+        model.addAttribute("hotel_room",hotel_room);
+        model.addAttribute("hotel_id",hotel_room.getHotel_id());
+        return "hotelRoomUpdate";
+    }
+    @RequestMapping(value = "/sys/updateRoom",method = RequestMethod.POST)
+    public String updateRoom(HttpSession session, HttpServletRequest request,
+                           @RequestParam(value ="hotel_id", required = false) String hotel_id,
+                           @RequestParam(value ="room_id", required = false) String room_id,
+                           @RequestParam(value ="room_type", required = false) String room_type,
+                           @RequestParam(value ="cost", required = false) String cost
+    ){
+        Hotel_room hotel_room = new Hotel_room();
+        hotel_room.setCost(Float.valueOf(cost));
+        hotel_room.setHotel_id(Integer.valueOf(hotel_id));
+        hotel_room.setRoom_type(room_type);
+        hotel_room.setRoom_id(Integer.valueOf(room_id));
+        hotel_roomService.updateByPrimaryKey(hotel_room);
+        return "redirect:/sys/hotelRoom/"+hotel_id;
+    }
 }
+

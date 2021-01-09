@@ -33,7 +33,7 @@
         <!--导航-->
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;后台首页</a></li>
+                <li class="active"><a href="statistic.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;后台首页</a></li>
 <%--                <li ><a href="userList.html"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;管理员管理</a></li>--%>
                 <li><a href="userList.html"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;用户管理</a></li>
                 <li><a href="guideList.html"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;导游管理</a></li>
@@ -191,20 +191,19 @@
                 <h4 class="modal-title" id="myModalLabel">添加管理员</h4>
             </div>
             <div class="modal-body">
-                <form action="${pageContext.request.contextPath}/sys/addAdmin.html" class ="form1" method="post" enctype="multipart/form-data">
+                <form action="${pageContext.request.contextPath}/sys/addAdmin" class ="form1" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="admin_account">管理员名</label>
-                        <input type="text" id="admin_account" name ="admin_password" class="form-control" placeholder="用户名">
+                        <input type="text" id="admin_account" name ="admin_account" class="form-control" placeholder="用户名">
                     </div>
                     <div class="form-group">
                         <label for="admin_password">管理员密码</label>
                         <input type="text" id="admin_password" name = "admin_password" class="form-control" placeholder="请输入用户密码">
                     </div>
-
-                    <div class="form-group">
-                        <label for="admin_password1">确认管理员密码</label>
-                        <input type="text" id="admin_password1" name = "admin_password1"class="form-control" placeholder="请确认输入用户密码">
-                    </div>
+<%--                    <div class="form-group">--%>
+<%--                        <label for="admin_password1">确认管理员密码</label>--%>
+<%--                        <input type="text" id="admin_password1" name = "admin_password1"class="form-control" placeholder="请确认输入用户密码">--%>
+<%--                    </div>--%>
 <%--                    <div class="form-group">--%>
 <%--                        <label for="addpassword1">性别</label>--%>
 <%--                        <input type="text" id="addpassword1" name = "repassword"class="form-control" placeholder="请确认输入用户性别">--%>

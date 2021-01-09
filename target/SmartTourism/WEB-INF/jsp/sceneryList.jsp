@@ -40,7 +40,7 @@
 
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li ><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;后台首页</a></li>
+                <li ><a href="statistic.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;后台首页</a></li>
                 <li ><a href="userList.html"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;用户管理</a></li>
                 <li><a href="guideList.html"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;导游管理</a></li>
                 <li><a href="restList.html"><span class="glyphicon  glyphicon-glass"></span>&nbsp;&nbsp;餐厅管理</a></li>
@@ -77,6 +77,7 @@
                 <a href="sceneryList.html" class="list-group-item active">景区管理</a>
                 <a href="scenerySearch.html" class="list-group-item">景区搜索</a>
                 <a href="" role="button"  class="list-group-item" data-toggle="modal" data-target="#myModal">添加景区信息</a>
+                <a href="sceneryReservationList.html" class="list-group-item">景区门票预订信息</a>
             </div>
         </div>
         <div class="col-md-10">

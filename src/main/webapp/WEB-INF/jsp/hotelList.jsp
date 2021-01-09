@@ -40,7 +40,7 @@
 
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li ><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;后台首页</a></li>
+                <li ><a href="statistic.html"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;后台首页</a></li>
                 <li ><a href="userList.html"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;用户管理</a></li>
                 <li><a href="guideList.html"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;导游管理</a></li>
                 <li><a href="restList.html"><span class="glyphicon  glyphicon-glass"></span>&nbsp;&nbsp;餐厅管理</a></li>
@@ -77,6 +77,7 @@
                 <a href="hotelList.html" class="list-group-item active">酒店管理</a>
                 <a href="hotelSerach.html" class="list-group-item">酒店搜索</a>
                 <a href="" role="button"  class="list-group-item" data-toggle="modal" data-target="#myModal">添加酒店信息</a>
+                <a href="hotelReservation.html" class="list-group-item">酒店预订记录</a>
             </div>
         </div>
         <div class="col-md-10">
@@ -132,7 +133,10 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a id="editHotel" onclick="hotelDetail(${hotel.hotel_id})">编辑</a></li>
+
                                     <li><a id=“hotelDel” onclick="hotelDel(${hotel.hotel_id})">删除</a></li>
+
+                                    <li><a id="editHotelRoom" onclick="hotelRoom(${hotel.hotel_id})">酒店房间管理</a></li>
                                 </ul>
                             </div>
                         </td>

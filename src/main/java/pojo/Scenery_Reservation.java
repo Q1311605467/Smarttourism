@@ -10,6 +10,7 @@ public class Scenery_Reservation {
     private int reserv_num;
     private int tel;
     private int is_cancel;
+    private float total_cost_s;
 
     public int getScen_reserv_id() {
         return scen_reserv_id;
@@ -81,5 +82,13 @@ public class Scenery_Reservation {
 
     public void setIs_cancel(int is_cancel) {
         this.is_cancel = is_cancel;
+    }
+
+    public float getTotal_cost_s() {
+        return total_cost_s;
+    }
+
+    public void setTotal_cost_s(float total_cost_s) {
+        this.total_cost_s = total_cost_s;
     }
 }
